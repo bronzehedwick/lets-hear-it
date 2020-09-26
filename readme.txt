@@ -1,4 +1,4 @@
-=== Let\'s Hear It ===
+=== Let's Hear It ===
 
 Contributors: automattic
 Tags: custom-background, custom-logo, custom-menu, featured-images, threaded-comments, translation-ready
@@ -10,7 +10,7 @@ Stable tag: 1.0.0
 License: GNU General Public License v2 or later
 License URI: LICENSE
 
-A starter theme called Let\'s Hear It.
+A starter theme called Let's Hear It.
 
 == Description ==
 
@@ -26,7 +26,7 @@ Description
 
 = Does this theme support any plugins? =
 
-Let\'s Hear It includes support for WooCommerce and for Infinite Scroll in Jetpack.
+Let's Hear It includes support for WooCommerce and for Infinite Scroll in Jetpack.
 
 == Changelog ==
 

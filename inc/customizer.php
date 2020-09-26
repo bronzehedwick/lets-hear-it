@@ -1,8 +1,8 @@
 <?php
 /**
- * Let\'s Hear It Theme Customizer
+ * Let's Hear It Theme Customizer
  *
- * @package Let\'s_Hear_It
+ * @package Lets_Hear_It
  */
 
 /**

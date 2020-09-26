@@ -1,10 +1,10 @@
 <?php
 /**
- * Let\'s Hear It functions and definitions
+ * Let's Hear It functions and definitions
  *
  * @link https://developer.wordpress.org/themes/basics/theme-functions/
  *
- * @package Let\'s_Hear_It
+ * @package Lets_Hear_It
  */
 
 if ( ! defined( '_S_VERSION' ) ) {
@@ -24,7 +24,7 @@ if ( ! function_exists( 'lets_hear_it_setup' ) ) :
 		/*
 		 * Make theme available for translation.
 		 * Translations can be filed in the /languages/ directory.
-		 * If you're building a theme based on Let\'s Hear It, use a find and replace
+		 * If you're building a theme based on Let's Hear It, use a find and replace
 		 * to change 'lets-hear-it' to the name of your theme in all the template files.
 		 */
 		load_theme_textdomain( 'lets-hear-it', get_template_directory() . '/languages' );
