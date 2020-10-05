@@ -6,7 +6,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
  *
- * @package Let\'s_Hear_It
+ * @package Lets_Hear_It
  */
 
 ?>
