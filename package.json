@@ -43,6 +43,6 @@
     "lint:js": "wp-scripts lint-js 'js/*.js'",
     "bundle": "dir-archiver --src . --dest ../lets-hear-it.zip --exclude .DS_Store .stylelintrc.json .eslintrc .git .gitattributes .github .gitignore README.md composer.json composer.lock node_modules vendor package-lock.json package.json .travis.yml phpcs.xml.dist sass style.css.map",
     "sync:dev": "rsync --archive --delete --exclude .DS_Store .stylelintrc.json .eslintrc .git .gitignore README.md composer.json composer.lock node_modules vendor package-lock.json package.json phpcs.xml.dist sass style.css.map . ~/Sites/VVV/www/wordpress-one/public_html/wp-content/themes/lets-hear-it",
-    "sync:prod": "echo \"You didn't set this up yet.\""
+    "sync:prod": "rsync --omit-dir-times --rsh=ssh --archive --delete --exclude .DS_Store .stylelintrc.json .eslintrc .git .gitignore README.md composer.json composer.lock node_modules vendor package-lock.json package.json phpcs.xml.dist sass style.css.map . letshearit:/var/www/html/wordpress/wp-content/themes/lets-hear-it"
   }
 }
