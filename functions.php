@@ -202,7 +202,9 @@ Class LHI_Recent_Episodes extends SeriouslySimplePodcasting\Widgets\Recent_Episo
 					$img = wp_get_attachment_image_src( $series_image_attachment_id, 'thumbnail' );
 				}
 				?>
-        <img class="post-image" src="<?php echo $img[0]; ?>" width="<?php echo $img[1]; ?>" height="<?php echo $img[2]; ?>">
+        <?php if ( $series_image ) : ?>
+          <img class="post-image" src="<?php echo $img[0]; ?>" width="<?php echo $img[1]; ?>" height="<?php echo $img[2]; ?>">
+        <?php endif; ?>
         <h3 class="post-title">
           <a href="<?php the_permalink(); ?>"><?php get_the_title() ? the_title() : the_ID(); ?></a>
         </h3>
