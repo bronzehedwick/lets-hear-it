@@ -133,8 +133,108 @@ function lets_hear_it_widgets_init() {
 			'after_title'   => '</h2>',
 		)
 	);
+	register_sidebar(
+		array(
+			'name' => esc_html__( 'Homepage content', 'lets-hear-it' ),
+			'id' => 'homepage-content',
+			'description' => esc_html__( 'Add widgets here.', 'lets-hear-it' ),
+			'before_widget' => '<section id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</section>',
+			'before_title'  => '<h2 class="widget-title">',
+			'after_title'   => '</h2>',
+		)
+	);
 }
 add_action( 'widgets_init', 'lets_hear_it_widgets_init' );
+
+Class LHI_Recent_Episodes extends SeriouslySimplePodcasting\Widgets\Recent_Episodes {
+	function widget( $args, $instance ) {
+		$cache = array();
+		if ( ! $this->is_preview() ) {
+			$cache = wp_cache_get( 'widget_recent_episodes', 'widget' );
+		}
+
+		if ( ! is_array( $cache ) ) {
+			$cache = array();
+		}
+
+		if ( ! isset( $args['widget_id'] ) ) {
+			$args['widget_id'] = $this->id;
+		}
+
+		if ( isset( $cache[ $args['widget_id'] ] ) ) {
+			echo $cache[ $args['widget_id'] ];
+			return;
+		}
+
+		ob_start();
+
+		$title = ( ! empty( $instance['title'] ) ) ? $instance['title'] : __( 'Recent Episodes', 'seriously-simple-podcasting' );
+
+		/** This filter is documented in wp-includes/default-widgets.php */
+		$title = apply_filters( 'widget_title', $title, $instance, $this->id_base );
+
+		$number = ( ! empty( $instance['number'] ) ) ? absint( $instance['number'] ) : 5;
+		if ( ! $number ) {
+			$number = 5;
+		}
+
+		$show_date = isset( $instance['show_date'] ) ? $instance['show_date'] : false;
+
+		$query_args = ssp_episodes( $number, '', true, 'widget' );
+
+		$qry = new WP_Query( apply_filters( 'ssp_widget_recent_episodes_args', $query_args ) );
+
+		if ($qry->have_posts()) :
+?>
+		<?php echo $args['before_widget']; ?>
+		<?php if ( $title ) {
+			echo $args['before_title'] . $title . $args['after_title'];
+		} ?>
+		<?php while ( $qry->have_posts() ) : $qry->the_post(); ?>
+			<div>
+				<?php
+        $series = get_the_terms( get_the_ID(), 'series' )[0];
+				$series_id = $series->term_id;
+				$series_image = get_option( "ss_podcasting_data_image_{$series_id}", false );
+				if ( $series_image ) {
+					$series_image_attachment_id = ssp_get_image_id_from_url( $series_image );
+					$img = wp_get_attachment_image_src( $series_image_attachment_id, 'thumbnail' );
+				}
+				?>
+        <img class="post-image" src="<?php echo $img[0]; ?>" width="<?php echo $img[1]; ?>" height="<?php echo $img[2]; ?>">
+        <h3 class="post-title">
+          <a href="<?php the_permalink(); ?>"><?php get_the_title() ? the_title() : the_ID(); ?></a>
+        </h3>
+        <p class="post-subtitle">
+          <a href="<?php echo $series->taxonomy . '/' . $series->slug; ?>"><?php echo $series->name; ?></a>
+        </p>
+			<?php if ( $show_date ) : ?>
+				<span class="post-date">Released <time datetime="<?php echo get_the_date('c'); ?>"><?php echo get_the_date(); ?></time></span>
+			<?php endif; ?>
+			</div>
+		<?php endwhile; ?>
+		<?php echo $args['after_widget']; ?>
+<?php
+		// Reset the global $the_post as this query will have stomped on it
+		wp_reset_postdata();
+
+		endif;
+
+		if ( ! $this->is_preview() ) {
+			$cache[ $args['widget_id'] ] = ob_get_flush();
+			wp_cache_set( 'widget_recent_episodes', $cache, 'widget' );
+		} else {
+			ob_end_flush();
+		}
+	}
+}
+
+function lhi_recent_episodes_widget_register() {
+	unregister_widget( 'LHI_Recent_Episodes' );
+	register_widget( 'LHI_Recent_Episodes' );
+}
+add_action( 'widgets_init', 'lhi_recent_episodes_widget_register' );
 
 /**
  * Enqueue scripts and styles.

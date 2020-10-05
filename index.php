@@ -28,7 +28,14 @@ get_header();
 				<?php
 			endif;
 
+			if ( is_front_page() && is_active_sidebar( 'homepage-content' ) ) : ?>
+				<div class="homepage-content">
+					<?php dynamic_sidebar( 'homepage-content' ); ?>
+				</div><!-- #homepage-content -->
+			<?php endif;
+
 			/* Start the Loop */
+			if ( ! is_front_page() ) :
 			while ( have_posts() ) :
 				the_post();
 
@@ -40,6 +47,7 @@ get_header();
 				get_template_part( 'template-parts/content', get_post_type() );
 
 			endwhile;
+			endif;
 
 			the_posts_navigation();
 
