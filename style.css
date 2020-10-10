@@ -787,11 +787,15 @@ textarea {
 
 	.main-navigation ul {
 		display: flex;
-        justify-content: space-around;
+        justify-content: center;
         text-align: center;
         margin: 0;
-        padding-left: 1ch;
+        padding-left: 0;
 	}
+
+    .main-navigation li + li {
+        margin-left: 3ch;
+    }
 }
 
 .site-main .comment-navigation,
