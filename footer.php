@@ -12,7 +12,7 @@
 ?>
 
 	<footer id="colophon" class="site-footer">
-        <div class="site-footer__menu">
+        <nav class="site-footer__menu">
         <?php
         wp_nav_menu(
             array(
@@ -21,7 +21,7 @@
             )
         );
         ?>
-        </div>
+        </nav>
         <small class="site-legal">
             © <time datetime="<?php echo date('Y'); ?>"><?php echo date('Y'); ?></time> Let's Hear It Network
             | Theme by <a href="https://www.chrisdeluca.me">Chris DeLuca</a>            

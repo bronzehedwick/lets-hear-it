@@ -707,13 +707,14 @@ textarea {
 .main-navigation {
 	display: block;
 	width: 100%;
+    margin-top: 2em;
 }
 
 .main-navigation ul {
 	display: none;
 	list-style: none;
-	margin: 0;
-	padding-left: 0;
+	margin: 0.5em 0 0 0;
+	padding-left: 1ch;
 }
 
 .main-navigation ul ul {
@@ -752,6 +753,24 @@ textarea {
 .main-navigation a {
 	display: block;
 	text-decoration: none;
+    font-size: 1.2em;
+    color: var(--color-primary);
+}
+
+.main-navigation a::before {
+    content: '・';
+}
+
+.main-navigation a::after {
+    content: '・';
+}
+
+.main-navigation a:hover::before {
+    content: '☞';
+}
+
+.main-navigation a:hover::after {
+    content: '☜';
 }
 
 /* Small menu. */
@@ -768,6 +787,10 @@ textarea {
 
 	.main-navigation ul {
 		display: flex;
+        justify-content: space-around;
+        text-align: center;
+        margin: 0;
+        padding-left: 1ch;
 	}
 }
 
