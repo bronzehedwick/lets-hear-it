@@ -44,6 +44,7 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 	- Captions
 	- Galleries
 	- Logo
+    - Footer
 # plugins
 	- Jetpack infinite scroll
 # Utilities
@@ -508,6 +509,7 @@ big {
 /* Elements {{{2
 --------------------------------------------- */
 body {
+	padding: 0.25em;
 	background-color: var(--background-color-primary);
 }
 
@@ -683,11 +685,18 @@ textarea {
 # Layouts {{{1
 --------------------------------------------------------------*/
 
+.site-main {
+    max-width: 65ch;
+    margin: 0 auto;
+}
+
+/* 1}}} */
+
 /*--------------------------------------------------------------
-# Components {{{2
+# Components {{{1
 --------------------------------------------------------------*/
 
-/* Navigation {{{3
+/* Navigation {{{2
 --------------------------------------------- */
 .main-navigation {
 	display: block;
@@ -783,9 +792,9 @@ textarea {
 	flex: 1 0 50%;
 }
 
-/* 3}}} */
+/* 2}}} */
 
-/* Posts and pages {{{3
+/* Posts and pages {{{2
 --------------------------------------------- */
 .sticky {
 	display: block;
@@ -811,9 +820,9 @@ textarea {
 	margin: 0 0 1.5em;
 }
 
-/* 3}}} */
+/* 2}}} */
 
-/* Comments {{{3
+/* Comments {{{2
 --------------------------------------------- */
 .comment-content a {
 	word-wrap: break-word;
@@ -823,9 +832,9 @@ textarea {
 	display: block;
 }
 
-/* 3}}} */
+/* 2}}} */
 
-/* Widgets {{{3
+/* Widgets {{{2
 --------------------------------------------- */
 .widget {
 	margin: 0 0 1.5em;
@@ -835,9 +844,9 @@ textarea {
 	max-width: 100%;
 }
 
-/* 3}}}
+/* 2}}}
 
-/* Media {{{3
+/* Media {{{2
 --------------------------------------------- */
 .page-content .wp-smiley,
 .entry-content .wp-smiley,
@@ -853,9 +862,9 @@ textarea {
 	display: inline-block;
 }
 
-/* 3}}} */
+/* 2}}} */
 
-/* Captions {{{3
+/* Captions {{{2
 --------------------------------------------- */
 .wp-caption {
 	margin-bottom: 1.5em;
@@ -876,9 +885,9 @@ textarea {
 	text-align: center;
 }
 
-/* 3}}} */
+/* 2}}} */
 
-/* Galleries {{{3
+/* Galleries {{{2
 --------------------------------------------- */
 .gallery {
 	margin-bottom: 1.5em;
@@ -928,16 +937,15 @@ textarea {
 	display: block;
 }
 
-/* 3}}} */
+/* 2}}} */
 
-/* Logo {{{3
+/* Logo {{{2
 --------------------------------------------- */
 
 #logo {
 	display: block;
 	margin: 0 auto;
 	max-height: 10em;
-	padding: 0.25em;
 }
 
 #logo-subtitle {
@@ -949,7 +957,15 @@ textarea {
 	font-size: 1rem;
 }
 
-/* 3}}} */
+/* 2}}} */
+
+/* Footer {{{2
+----------------------------------------------*/
+
+.site-footer {
+    margin-top: 6em;
+    text-align: center;
+}
 
 /* 2}}} */
 
