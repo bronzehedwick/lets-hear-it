@@ -129,7 +129,7 @@ function lets_hear_it_widgets_init() {
 			'description'   => esc_html__( 'Add widgets here.', 'lets-hear-it' ),
 			'before_widget' => '<section id="%1$s" class="widget %2$s">',
 			'after_widget'  => '</section>',
-			'before_title'  => '<h2 class="widget-title">',
+			'before_title'  => '<h2 class="widget-title recent-episodes__main-title">',
 			'after_title'   => '</h2>',
 		)
 	);
@@ -138,9 +138,9 @@ function lets_hear_it_widgets_init() {
 			'name' => esc_html__( 'Homepage content', 'lets-hear-it' ),
 			'id' => 'homepage-content',
 			'description' => esc_html__( 'Add widgets here.', 'lets-hear-it' ),
-			'before_widget' => '<section id="%1$s" class="widget %2$s">',
+			'before_widget' => '<section id="%1$s" class="widget %2$s recent-episodes">',
 			'after_widget'  => '</section>',
-			'before_title'  => '<h2 class="widget-title">',
+			'before_title'  => '<h2 class="widget-title recent-episodes__main-title">',
 			'after_title'   => '</h2>',
 		)
 	);
@@ -192,27 +192,27 @@ Class LHI_Recent_Episodes extends SeriouslySimplePodcasting\Widgets\Recent_Episo
 			echo $args['before_title'] . $title . $args['after_title'];
 		} ?>
 		<?php while ( $qry->have_posts() ) : $qry->the_post(); ?>
-			<div>
-				<?php
-        $series = get_the_terms( get_the_ID(), 'series' )[0];
-				$series_id = $series->term_id;
-				$series_image = get_option( "ss_podcasting_data_image_{$series_id}", false );
-				if ( $series_image ) {
-					$series_image_attachment_id = ssp_get_image_id_from_url( $series_image );
-					$img = wp_get_attachment_image_src( $series_image_attachment_id, 'thumbnail' );
-				}
-				?>
+        <div class="recent-episodes__item">
+            <?php
+            $series = get_the_terms( get_the_ID(), 'series' )[0];
+            $series_id = $series->term_id;
+            $series_image = get_option( "ss_podcasting_data_image_{$series_id}", false );
+            if ( $series_image ) {
+                $series_image_attachment_id = ssp_get_image_id_from_url( $series_image );
+                $img = wp_get_attachment_image_src( $series_image_attachment_id, 'thumbnail' );
+            }
+            ?>
         <?php if ( $series_image ) : ?>
-          <img class="post-image" src="<?php echo $img[0]; ?>" width="<?php echo $img[1]; ?>" height="<?php echo $img[2]; ?>">
+          <img class="recent-episodes__image" src="<?php echo $img[0]; ?>" width="<?php echo $img[1]; ?>" height="<?php echo $img[2]; ?>">
         <?php endif; ?>
-        <h3 class="post-title">
+        <h3 class="recent-episodes__title">
           <a href="<?php the_permalink(); ?>"><?php get_the_title() ? the_title() : the_ID(); ?></a>
         </h3>
-        <p class="post-subtitle">
+        <p class="recent-episodes__subtitle">
           <a href="<?php echo $series->taxonomy . '/' . $series->slug; ?>"><?php echo $series->name; ?></a>
         </p>
 			<?php if ( $show_date ) : ?>
-				<span class="post-date">Released <time datetime="<?php echo get_the_date('c'); ?>"><?php echo get_the_date(); ?></time></span>
+				<p class="recent-episodes__date">Released <time datetime="<?php echo get_the_date('c'); ?>"><?php echo get_the_date(); ?></time></p>
 			<?php endif; ?>
 			</div>
 		<?php endwhile; ?>

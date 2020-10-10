@@ -44,6 +44,7 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 	- Captions
 	- Galleries
 	- Logo
+    - Recent Episodes
     - Footer
 # plugins
 	- Jetpack infinite scroll
@@ -408,9 +409,9 @@ html {
 
 :root {
 	--background-color-primary: #fff;
-	--background-color-secondary: #999;
+	--background-color-secondary: #f1f1f1;
 	--color-primary: #f3a03a;
-	--color-secondary: #3a8df2;
+	--color-secondary: #3e8bea;
 	--color-tertiary: #f2433a;
 	--color-main-text: #222;
 	--color-secondary-text: #404040;
@@ -945,7 +946,7 @@ textarea {
 #logo {
 	display: block;
 	margin: 0 auto;
-	max-height: 10em;
+	max-width: 50ch;
 }
 
 #logo-subtitle {
@@ -955,6 +956,46 @@ textarea {
 .site-title {
 	margin: 0;
 	font-size: 1rem;
+}
+
+/* 2}}} */
+
+/* Recent Episodes {{{2
+----------------------------------------------*/
+
+.recent-episodes {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+}
+
+.recent-episodes__main-title {
+    width: 100%;
+}
+
+.recent-episodes__item {
+    max-width: 20ch;
+}
+
+.recent-episodes__title,
+.recent-episodes__subtitle,
+.recent-episodes__date {
+  margin-top: 0;
+}
+
+.recent-episodes__title,
+.recent-episodes__subtitle {
+   margin-bottom: 0; 
+}
+
+.recent-episodes__subtitle {
+  text-transform: capitalize;
+  font-variant: small-caps;
+}
+
+.recent-episodes__date {
+  color: var(--color-secondary-text);
+  font-size: 0.8em;
 }
 
 /* 2}}} */
