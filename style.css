@@ -3,8 +3,8 @@ vim: set foldmethod=marker:
 Theme Name: Let's Hear It
 Theme URI: https://underscores.me/
 Author: Chris DeLuca
-Author URI: https://www.chrisdelua.me/
-Description: Description
+Author URI: https://www.chrisdeluca.me/
+Description: A theme for the Let's Hear It podcast network site.
 Version: 1.0.0
 Tested up to: 5.4
 Requires PHP: 5.6
@@ -416,6 +416,7 @@ html {
 }
 
 @media screen and (prefers-color-scheme: dark) {
+
 	:root {
 		--background-color-primary: #222;
 		--background-color-secondary: #444;
@@ -435,7 +436,7 @@ input,
 select,
 optgroup,
 textarea {
-	color: var(--color-secondary-text);
+	color: var(--color-main-text);
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 	font-size: 1rem;
 	line-height: 1.5;
@@ -940,13 +941,12 @@ textarea {
 }
 
 #logo-subtitle {
-	fill: #333;
+	fill: var(--color-main-text);
 }
 
-@media screen and (prefers-color-scheme: dark) {
-	#logo-subtitle {
-		fill: #fff;
-	}
+.site-title {
+	margin: 0;
+	font-size: 1rem;
 }
 
 /* 3}}} */
