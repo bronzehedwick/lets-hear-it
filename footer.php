@@ -6,25 +6,16 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
  *
- * @package Let\'s_Hear_It
+ * @package Lets_Hear_It
  */
 
 ?>
 
 	<footer id="colophon" class="site-footer">
-		<div class="site-info">
-			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'lets-hear-it' ) ); ?>">
-				<?php
-				/* translators: %s: CMS name, i.e. WordPress. */
-				printf( esc_html__( 'Proudly powered by %s', 'lets-hear-it' ), 'WordPress' );
-				?>
-			</a>
-			<span class="sep"> | </span>
-				<?php
-				/* translators: 1: Theme name, 2: Theme author. */
-				printf( esc_html__( 'Theme: %1$s by %2$s.', 'lets-hear-it' ), 'lets-hear-it', '<a href="http://www.chrisdeluca.me/">Chris DeLuca</a>' );
-				?>
-		</div><!-- .site-info -->
+        <small class="site-legal">
+            © <time datetime="<?php echo date('Y'); ?>"><?php echo date('Y'); ?></time> Let's Hear It Network
+            | Theme by <a href="https://www.chrisdeluca.me">Chris DeLuca</a>            
+        </small><!-- .site-legal -->
 	</footer><!-- #colophon -->
 </div><!-- #page -->
 
