@@ -1,4 +1,5 @@
 /*!
+vim: set foldmethod=marker:
 Theme Name: Let's Hear It
 Theme URI: https://underscores.me/
 Author: Chris DeLuca
@@ -42,6 +43,7 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 	- Media
 	- Captions
 	- Galleries
+	- Logo
 # plugins
 	- Jetpack infinite scroll
 # Utilities
@@ -51,10 +53,10 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 --------------------------------------------------------------*/
 
 /*--------------------------------------------------------------
-# Generic
+# Generic {{{1
 --------------------------------------------------------------*/
 
-/* Normalize
+/* Normalize {{{2
 --------------------------------------------- */
 
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
@@ -375,7 +377,9 @@ template {
 	display: none;
 }
 
-/* Box sizing
+/* }}} */
+
+/* Box sizing {{{2
 --------------------------------------------- */
 
 /* Inherit box-sizing to more easily change it's value on a component level.
@@ -390,11 +394,15 @@ html {
 	box-sizing: border-box;
 }
 
+/* }}} */
+
+/* }}} */
+
 /*--------------------------------------------------------------
-# Base
+# Base {{{1
 --------------------------------------------------------------*/
 
-/* Typography
+/* Typography {{{2
 --------------------------------------------- */
 body,
 button,
@@ -469,7 +477,9 @@ big {
 	font-size: 125%;
 }
 
-/* Elements
+/* 2}}} */
+
+/* Elements {{{2
 --------------------------------------------- */
 body {
 	background: #fff;
@@ -530,7 +540,9 @@ table {
 	width: 100%;
 }
 
-/* Links
+/* 2}}} */
+
+/* Links {{{2
 --------------------------------------------- */
 a {
 	color: #4169e1;
@@ -555,7 +567,9 @@ a:active {
 	outline: 0;
 }
 
-/* Forms
+/* 2}}} */
+
+/* Forms {{{2
 --------------------------------------------- */
 button,
 input[type="button"],
@@ -637,15 +651,19 @@ textarea {
 	width: 100%;
 }
 
+/* 2}}} */
+
+/* 1}}} */
+
 /*--------------------------------------------------------------
-# Layouts
+# Layouts {{{1
 --------------------------------------------------------------*/
 
 /*--------------------------------------------------------------
-# Components
+# Components {{{2
 --------------------------------------------------------------*/
 
-/* Navigation
+/* Navigation {{{3
 --------------------------------------------- */
 .main-navigation {
 	display: block;
@@ -741,7 +759,9 @@ textarea {
 	flex: 1 0 50%;
 }
 
-/* Posts and pages
+/* 3}}} */
+
+/* Posts and pages {{{3
 --------------------------------------------- */
 .sticky {
 	display: block;
@@ -767,7 +787,9 @@ textarea {
 	margin: 0 0 1.5em;
 }
 
-/* Comments
+/* 3}}} */
+
+/* Comments {{{3
 --------------------------------------------- */
 .comment-content a {
 	word-wrap: break-word;
@@ -777,7 +799,9 @@ textarea {
 	display: block;
 }
 
-/* Widgets
+/* 3}}} */
+
+/* Widgets {{{3
 --------------------------------------------- */
 .widget {
 	margin: 0 0 1.5em;
@@ -787,7 +811,9 @@ textarea {
 	max-width: 100%;
 }
 
-/* Media
+/* 3}}}
+
+/* Media {{{3
 --------------------------------------------- */
 .page-content .wp-smiley,
 .entry-content .wp-smiley,
@@ -803,7 +829,9 @@ textarea {
 	display: inline-block;
 }
 
-/* Captions
+/* 3}}} */
+
+/* Captions {{{3
 --------------------------------------------- */
 .wp-caption {
 	margin-bottom: 1.5em;
@@ -824,7 +852,9 @@ textarea {
 	text-align: center;
 }
 
-/* Galleries
+/* 3}}} */
+
+/* Galleries {{{3
 --------------------------------------------- */
 .gallery {
 	margin-bottom: 1.5em;
@@ -874,11 +904,39 @@ textarea {
 	display: block;
 }
 
+/* 3}}} */
+
+/* Logo {{{3
+--------------------------------------------- */
+
+#logo {
+	display: block;
+	margin: 0 auto;
+	max-height: 10em;
+	padding: 0.25em;
+}
+
+#logo-subtitle {
+	fill: #333;
+}
+
+@media screen and (prefers-color-scheme: dark) {
+	#logo-subtitle {
+		fill: #fff;
+	}
+}
+
+/* 3}}} */
+
+/* 2}}} */
+
+/* 1}}} */
+
 /*--------------------------------------------------------------
-# Plugins
+# Plugins {{{1
 --------------------------------------------------------------*/
 
-/* Jetpack infinite scroll
+/* Jetpack infinite scroll {{{2
 --------------------------------------------- */
 
 /* Hide the Posts Navigation and the Footer when Infinite Scroll is in use. */
@@ -892,11 +950,15 @@ textarea {
 	display: block;
 }
 
+/* 2}}} */
+
+/* 1}}} */
+
 /*--------------------------------------------------------------
-# Utilities
+# Utilities {{{1
 --------------------------------------------------------------*/
 
-/* Accessibility
+/* Accessibility {{{2
 --------------------------------------------- */
 
 /* Text meant only for screen readers. */
@@ -938,7 +1000,9 @@ textarea {
 	outline: 0;
 }
 
-/* Alignments
+/* 2}}} */
+
+/* Alignments {{{2
 --------------------------------------------- */
 .alignleft {
 
@@ -967,3 +1031,7 @@ textarea {
 	margin-right: auto;
 	margin-bottom: 1.5em;
 }
+
+/* 2}}} */
+
+/* 1}}} */
