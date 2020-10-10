@@ -510,7 +510,6 @@ big {
 /* Elements {{{2
 --------------------------------------------- */
 body {
-	padding: 0.25em;
 	background-color: var(--background-color-primary);
 }
 
@@ -686,6 +685,12 @@ textarea {
 # Layouts {{{1
 --------------------------------------------------------------*/
 
+.site-main,
+.site-footer,
+.site-header {
+	padding: 0.25em;
+}
+
 .site-main {
     max-width: 65ch;
     margin: 0 auto;
@@ -799,11 +804,6 @@ textarea {
 --------------------------------------------- */
 .sticky {
 	display: block;
-}
-
-.post,
-.page {
-	margin: 0 0 1.5em;
 }
 
 .updated:not(.published) {
@@ -1005,7 +1005,9 @@ textarea {
 
 .site-footer {
     margin-top: 6em;
+    padding-top: 1em;
     text-align: center;
+    background-color: var(--background-color-secondary);
 }
 
 .site-footer__menu ul {
@@ -1017,10 +1019,7 @@ textarea {
     list-style-type: none;
 }
 
-.site-footer__menu li + li {
-    margin-left: 1ch;
-}
-
+.site-footer__menu li + li,
 .site-footer__menu li + li a {
     margin-left: 1ch;
 }
