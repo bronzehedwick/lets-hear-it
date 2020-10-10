@@ -1,4 +1,4 @@
-/*!
+/*! {{{1
 vim: set foldmethod=marker:
 Theme Name: Let's Hear It
 Theme URI: https://underscores.me/
@@ -21,10 +21,10 @@ Underscores is distributed under the terms of the GNU GPL v2 or later.
 
 Normalizing styles have been helped along thanks to the fine work of
 Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
-*/
+1}}} */
 
 /*--------------------------------------------------------------
->>> TABLE OF CONTENTS:
+>>> TABLE OF CONTENTS: {{{1
 ----------------------------------------------------------------
 # Generic
 	- Normalize
@@ -50,7 +50,7 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 	- Accessibility
 	- Alignments
 
---------------------------------------------------------------*/
+1}}} ----------------------------------------------------------*/
 
 /*--------------------------------------------------------------
 # Generic {{{1
@@ -402,6 +402,31 @@ html {
 # Base {{{1
 --------------------------------------------------------------*/
 
+/* Variables {{{2
+--------------------------------------------- */
+
+:root {
+	--background-color-primary: #fff;
+	--background-color-secondary: #999;
+	--color-primary: #f3a03a;
+	--color-secondary: #3a8df2;
+	--color-tertiary: #f2433a;
+	--color-main-text: #222;
+	--color-secondary-text: #404040;
+}
+
+@media screen and (prefers-color-scheme: dark) {
+	:root {
+		--background-color-primary: #222;
+		--background-color-secondary: #444;
+		--color-secondary: #6788eb;
+		--color-main-text: #fff;
+		--color-secondary-text: #949494;
+	}
+}
+
+/* 2}}} */
+
 /* Typography {{{2
 --------------------------------------------- */
 body,
@@ -410,7 +435,7 @@ input,
 select,
 optgroup,
 textarea {
-	color: #404040;
+	color: var(--color-secondary-text);
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 	font-size: 1rem;
 	line-height: 1.5;
@@ -482,7 +507,7 @@ big {
 /* Elements {{{2
 --------------------------------------------- */
 body {
-	background: #fff;
+	background-color: var(--background-color-primary);
 }
 
 hr {
@@ -544,18 +569,15 @@ table {
 
 /* Links {{{2
 --------------------------------------------- */
-a {
-	color: #4169e1;
-}
-
+a,
 a:visited {
-	color: #800080;
+	color: var(--color-secondary);
 }
 
 a:hover,
 a:focus,
 a:active {
-	color: #191970;
+	text-decoration-style: double;
 }
 
 a:focus {
@@ -575,20 +597,20 @@ button,
 input[type="button"],
 input[type="reset"],
 input[type="submit"] {
-	border: 1px solid;
-	border-color: #ccc #ccc #bbb;
+	border: 1px solid var(--color-primary);
 	border-radius: 3px;
-	background: #e6e6e6;
+	background: var(--color-primary);
 	color: rgba(0, 0, 0, 0.8);
 	line-height: 1;
-	padding: 0.6em 1em 0.4em;
+	padding: 0.5em 1em;
+	cursor: pointer;
 }
 
 button:hover,
 input[type="button"]:hover,
 input[type="reset"]:hover,
 input[type="submit"]:hover {
-	border-color: #ccc #bbb #aaa;
+	border-color: var(--color-main-text);
 }
 
 button:active,
@@ -618,10 +640,11 @@ input[type="datetime"],
 input[type="datetime-local"],
 input[type="color"],
 textarea {
-	color: #666;
+	color: var(--color-secondary-text);
 	border: 1px solid #ccc;
 	border-radius: 3px;
 	padding: 3px;
+	background-color: var(--background-color-secondary);
 }
 
 input[type="text"]:focus,
@@ -640,7 +663,7 @@ input[type="datetime"]:focus,
 input[type="datetime-local"]:focus,
 input[type="color"]:focus,
 textarea:focus {
-	color: #111;
+	color: var(--color-primary-text);
 }
 
 select {
