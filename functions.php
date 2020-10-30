@@ -199,7 +199,7 @@ Class LHI_Recent_Episodes extends SeriouslySimplePodcasting\Widgets\Recent_Episo
             $series_id = $series->term_id;
             $series_image = get_option( "ss_podcasting_data_image_{$series_id}", false );
             if ( $series_image ) {
-                $series_image_attachment_id = ssp_get_image_id_from_url( $series_image );
+                $series_image_attachment_id = attachment_url_to_postid( $series_image );
                 $img = wp_get_attachment_image_src( $series_image_attachment_id, 'thumbnail' );
             }
             ?>
