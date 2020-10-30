@@ -289,3 +289,21 @@ function lets_hear_it_two_factor_providers( $providers ) {
 	);
 }
 add_filter( 'two_factor_providers', 'lets_hear_it_two_factor_providers' );
+
+add_filter('post_link', 'series_permalink', 10, 3);
+add_filter('post_type_link', 'series_permalink', 10, 3);
+ 
+function series_permalink($permalink, $post_id, $leavename) {
+    if (strpos($permalink, '%series%') === FALSE) return $permalink;
+     
+    // Get post
+    $post = get_post($post_id);
+    if (!$post) return $permalink;
+ 
+    // Get taxonomy terms
+    $terms = wp_get_object_terms($post->ID, 'series');   
+    if (!is_wp_error($terms) && !empty($terms) && is_object($terms[0])) $taxonomy_slug = $terms[0]->slug;
+    else $taxonomy_slug = '';
+ 
+    return str_replace('%series%', $taxonomy_slug, $permalink);
+}
