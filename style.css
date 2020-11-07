@@ -912,9 +912,6 @@ textarea {
 
 /* Widgets {{{2
 --------------------------------------------- */
-.widget {
-	margin: 0 0 1.5em;
-}
 
 .widget select {
 	max-width: 100%;
@@ -1045,6 +1042,7 @@ textarea {
 }
 
 .recent-episodes__main-title {
+    margin-bottom: 1em;
     width: 100%;
 }
 
