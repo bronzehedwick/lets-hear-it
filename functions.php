@@ -200,11 +200,12 @@ Class LHI_Recent_Episodes extends SeriouslySimplePodcasting\Widgets\Recent_Episo
             $series_image = get_option( "ss_podcasting_data_image_{$series_id}", false );
             if ( $series_image ) {
                 $series_image_attachment_id = attachment_url_to_postid( $series_image );
-                $img = wp_get_attachment_image_src( $series_image_attachment_id, 'thumbnail' );
+                $img_small = wp_get_attachment_image_src( $series_image_attachment_id, 'thumbnail' );
+                $img_medium = wp_get_attachment_image_src( $series_image_attachment_id, 'medium' );
             }
             ?>
         <?php if ( $series_image ) : ?>
-          <img class="recent-episodes__image" src="<?php echo $img[0]; ?>" width="<?php echo $img[1]; ?>" height="<?php echo $img[2]; ?>">
+          <img class="recent-episodes__image" srcset="<?php echo $img_medium[0] . ' ' . $img_medium[1] . 'w, ' . $img_small[0] . ' ' . $img_small[1] . 'w'; ?>" sizes="150px" src="<?php echo $img_small[0]; ?>">
         <?php endif; ?>
         <h3 class="recent-episodes__title">
           <a href="<?php the_permalink(); ?>"><?php get_the_title() ? the_title() : the_ID(); ?></a>
