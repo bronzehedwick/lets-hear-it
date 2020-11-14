@@ -5,7 +5,7 @@ Theme URI: https://underscores.me/
 Author: Chris DeLuca
 Author URI: https://www.chrisdeluca.me/
 Description: A theme for the Let's Hear It podcast network site.
-Version: 1.0.1
+Version: 1.0.4
 Tested up to: 5.4
 Requires PHP: 5.6
 License: GNU General Public License v2 or later
@@ -149,6 +149,7 @@ abbr[title] {
 b,
 strong {
 	font-weight: bolder;
+	font-variation-settings: "wght" 900;
 }
 
 /**
@@ -277,7 +278,7 @@ fieldset {
  * 1. Correct the text wrapping in Edge and IE.
  * 2. Correct the color inheritance from `fieldset` elements in IE.
  * 3. Remove the padding so developers are not caught out when they zero out
- *		`fieldset` elements in all browsers.
+ *      `fieldset` elements in all browsers.
  */
 legend {
 	box-sizing: border-box;
@@ -418,7 +419,6 @@ html {
 }
 
 @media screen and (prefers-color-scheme: dark) {
-
 	:root {
 		--background-color-primary: #222;
 		--background-color-secondary: #444;
@@ -578,6 +578,7 @@ li > ol {
 
 dt {
 	font-weight: 700;
+	font-variation-settings: "wght" 700;
 }
 
 dd {
@@ -617,7 +618,9 @@ a:visited {
 a:hover,
 a:focus,
 a:active {
-	text-decoration-style: double;
+	background-color: var(--color-secondary);
+	color: var(--color-main-text);
+	text-decoration-color: var(--color-secondary);
 }
 
 a:focus {
@@ -811,6 +814,8 @@ textarea {
 
 .main-navigation a:hover {
 	font-variation-settings: "wght" 600, "slnt" -15;
+	font-decoration: none;
+	background-color: transparent;
 }
 
 .main-navigation a:hover::before {
@@ -1075,7 +1080,7 @@ textarea {
 .recent-episodes__date {
 	color: var(--color-secondary-text);
 	font-size: 0.8em;
-	font-variations-settings: "slnt" -5;
+	font-variation-settings: "slnt" -5;
 }
 
 /* 2}}} */
@@ -1165,6 +1170,7 @@ textarea {
 	display: block;
 	font-size: 0.875rem;
 	font-weight: 700;
+	font-variation-settings: "wght" 700;
 	height: auto;
 	left: 5px;
 	line-height: normal;
