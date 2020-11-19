@@ -546,6 +546,11 @@ big {
 
 /* Elements {{{2
 --------------------------------------------- */
+::selection {
+	color: #fff;
+	background-color: var(--color-primary);	
+}
+
 body {
 	background-color: var(--background-color-primary);
 }
@@ -619,7 +624,7 @@ a:hover,
 a:focus,
 a:active {
 	background-color: var(--color-secondary);
-	color: var(--color-main-text);
+	color: #fff;
 	text-decoration-color: var(--color-secondary);
 }
 
@@ -728,7 +733,7 @@ textarea {
 .site-main,
 .site-footer,
 .site-header {
-	padding: 0.25em;
+	padding: 1em;
 }
 
 .site-main {
@@ -1043,7 +1048,7 @@ textarea {
 .recent-episodes {
 	display: flex;
 	flex-flow: row wrap;
-	justify-content: space-between;
+	justify-content: center;
 }
 
 .recent-episodes__main-title {
@@ -1051,13 +1056,13 @@ textarea {
 	width: 100%;
 }
 
+.recent-episodes__item {
+	width: 20ch;
+}
+
 .recent-episodes__image {
 	border-radius: 4px;
 	border: 1px solid var(--background-color-secondary);
-}
-
-.recent-episodes__item {
-	max-width: 20ch;
 }
 
 .recent-episodes__title,
@@ -1089,10 +1094,19 @@ textarea {
 ----------------------------------------------*/
 
 .site-footer {
-	margin-top: 6em;
 	padding-top: 1em;
 	text-align: center;
 	background-color: var(--background-color-secondary);
+}
+
+.site-footer__graphic-wrapper {
+	overflow: hidden;
+}
+
+.site-footer__graphic {
+	display: block;
+	min-height: 10em;
+	margin-top: 5em;
 }
 
 .site-footer__menu ul {
