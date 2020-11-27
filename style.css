@@ -1064,6 +1064,23 @@ textarea {
 # Plugins {{{1
 --------------------------------------------------------------*/
 
+/* SSP Podcast Player {{{2
+--------------------------------------------- */
+
+.ssp-album-art-container + div,
+.ssp-player.ssp-player-large .ssp-download-episode,
+.ssp-player.ssp-player-large .ssp-playback-speed-label-container,
+.ssp-time-volume .ssp-volume,
+.ssp-download-container {
+  margin-top: 0;
+}
+
+.ssp-play-pause {
+	cursor: pointer;
+}
+
+/* 2}}} */
+
 /* Jetpack infinite scroll {{{2
 --------------------------------------------- */
 
