@@ -193,26 +193,24 @@ Class LHI_Recent_Episodes extends SeriouslySimplePodcasting\Widgets\Recent_Episo
 			echo $args['before_title'] . $title . $args['after_title'];
 		} ?>
 		<?php while ( $qry->have_posts() ) : $qry->the_post(); ?>
-        <div class="recent-episodes__item">
-            <?php
-            $series = get_the_terms( get_the_ID(), 'series' )[0];
-            $series_id = $series->term_id;
-            $series_image = get_option( "ss_podcasting_data_image_{$series_id}", false );
-            if ( $series_image ) {
-                $series_image_attachment_id = attachment_url_to_postid( $series_image );
-                $img_small = wp_get_attachment_image_src( $series_image_attachment_id, 'thumbnail' );
-                $img_medium = wp_get_attachment_image_src( $series_image_attachment_id, 'medium' );
-            }
-            ?>
-        <?php if ( $series_image ) : ?>
-          <img class="recent-episodes__image" srcset="<?php echo $img_medium[0] . ' ' . $img_medium[1] . 'w, ' . $img_small[0] . ' ' . $img_small[1] . 'w'; ?>" sizes="150px" src="<?php echo $img_small[0]; ?>">
-        <?php endif; ?>
-        <h3 class="recent-episodes__title">
-          <a href="<?php the_permalink(); ?>"><?php get_the_title() ? the_title() : the_ID(); ?></a>
-        </h3>
-        <p class="recent-episodes__subtitle">
-          <a href="<?php echo $series->taxonomy . '/' . $series->slug; ?>"><?php echo $series->name; ?></a>
-        </p>
+		<div class="recent-episodes__lhi-breadcrumb__item">
+			<?php $series = get_the_terms( get_the_ID(), 'series' )[0];
+			$series_id = $series->term_id;
+			$series_image = get_option( "ss_podcasting_data_image_{$series_id}", false );
+			if ( $series_image ) {
+				$series_image_attachment_id = attachment_url_to_postid( $series_image );
+				$img_small = wp_get_attachment_image_src( $series_image_attachment_id, 'thumbnail' );
+				$img_medium = wp_get_attachment_image_src( $series_image_attachment_id, 'medium' );
+			} ?>
+		<?php if ( $series_image ) : ?>
+		  <img class="recent-episodes__image" srcset="<?php echo $img_medium[0] . ' ' . $img_medium[1] . 'w, ' . $img_small[0] . ' ' . $img_small[1] . 'w'; ?>" sizes="150px" src="<?php echo $img_small[0]; ?>">
+		<?php endif; ?>
+		<h3 class="recent-episodes__title">
+		  <a href="<?php the_permalink(); ?>"><?php get_the_title() ? the_title() : the_ID(); ?></a>
+		</h3>
+		<p class="recent-episodes__subtitle">
+		  <a href="<?php echo $series->taxonomy . '/' . $series->slug; ?>"><?php echo $series->name; ?></a>
+		</p>
 			<?php if ( $show_date ) : ?>
 				<p class="recent-episodes__date">Released <time datetime="<?php echo get_the_date('c'); ?>"><?php echo get_the_date(); ?></time></p>
 			<?php endif; ?>
@@ -239,6 +237,232 @@ function lhi_recent_episodes_widget_register() {
 	register_widget( 'LHI_Recent_Episodes' );
 }
 add_action( 'widgets_init', 'lhi_recent_episodes_widget_register' );
+
+function lhi_breadcrumb() {
+	if ( is_front_page() ) {
+		return;
+	}
+
+	// Define
+	global $post;
+	$custom_taxonomy  = ''; // If you have custom taxonomy place it here
+
+	$defaults = array(
+		'id'          =>  'lhi-breadcrumb',
+		'classes'     =>  'lhi-breadcrumb',
+		'home_title'  =>  esc_html__( 'Home', '' )
+	);
+
+	// Start the breadcrumb with a link to your homepage
+	echo '<ul id="'. esc_attr( $defaults['id'] ) .'" class="'. esc_attr( $defaults['classes'] ) .'">';
+
+	// Creating home link
+	echo '<li class="lhi-breadcrumb__item"><a href="'. get_home_url() .'">'. esc_html( $defaults['home_title'] ) .'</a></li>';
+
+	if ( is_single() ) {
+
+		// Get posts type
+		$post_type = get_post_type();
+
+		// If post type is not post
+		if ( $post_type != 'post' ) {
+
+			$post_type_object   = get_post_type_object( $post_type );
+			$post_type_link     = get_post_type_archive_link( $post_type );
+
+			echo '<li class="lhi-breadcrumb__item lhi-breadcrumb__item-cat"><a href="' . $post_type_link . '">' . $post_type_object->labels->name . '</a></li>';
+
+		}
+
+		// Get categories
+		$category = get_the_category( $post->ID );
+
+		// If category not empty
+		if ( !empty( $category ) ) {
+
+			// Arrange category parent to child
+			$category_values      = array_values( $category );
+			$get_last_category    = end( $category_values );
+			// $get_last_category    = $category[count($category) - 1];
+			$get_parent_category  = rtrim( get_category_parents( $get_last_category->term_id, true, ',' ), ',' );
+			$cat_parent           = explode( ',', $get_parent_category );
+
+			// Store category in $display_category
+			$display_category = '';
+			foreach( $cat_parent as $p ) {
+				$display_category .=  '<li class="lhi-breadcrumb__item lhi-breadcrumb__item-cat">'. $p .'</li>';
+			}
+
+		}
+
+		// If it's a custom post type within a custom taxonomy
+		$taxonomy_exists = taxonomy_exists( $custom_taxonomy );
+
+		if ( empty( $get_last_category ) && !empty( $custom_taxonomy ) && $taxonomy_exists ) {
+
+			$taxonomy_terms = get_the_terms( $post->ID, $custom_taxonomy );
+			$cat_id         = $taxonomy_terms[0]->term_id;
+			$cat_link       = get_term_link($taxonomy_terms[0]->term_id, $custom_taxonomy);
+			$cat_name       = $taxonomy_terms[0]->name;
+
+		}
+
+		// Check if the post is in a category
+		if ( !empty( $get_last_category ) ) {
+
+			echo $display_category;
+			echo '<li class="lhi-breadcrumb__item lhi-breadcrumb__item--current">'. get_the_title() .'</li>';
+
+		} else if ( !empty( $cat_id ) ) {
+
+			echo '<li class="lhi-breadcrumb__item lhi-breadcrumb__item-cat"><a href="'. $cat_link .'">'. $cat_name .'</a></li>';
+			echo '<li class="lhi-breadcrumb__item--current lhi-breadcrumb__item">'. get_the_title() .'</li>';
+
+		} else {
+
+			echo '<li class="lhi-breadcrumb__item--current lhi-breadcrumb__item">'. get_the_title() .'</li>';
+
+		}
+
+	} else if ( is_archive() ) {
+
+		if ( is_tax() ) {
+			// Get posts type
+			$post_type = get_post_type();
+
+			// If post type is not post
+			if ( $post_type != 'post' ) {
+
+				$post_type_object   = get_post_type_object( $post_type );
+				$post_type_link     = get_post_type_archive_link( $post_type );
+
+				echo '<li class="lhi-breadcrumb__item lhi-breadcrumb__item-cat lhi-breadcrumb__item-custom-post-type-' . $post_type . '"><a href="' . $post_type_link . '">' . $post_type_object->labels->name . '</a></li>';
+
+			}
+
+			$custom_tax_name = get_queried_object()->name;
+			echo '<li class="lhi-breadcrumb__item lhi-breadcrumb__item--current">'. $custom_tax_name .'</li>';
+
+		} else if ( is_category() ) {
+
+			$parent = get_queried_object()->category_parent;
+
+			if ( $parent !== 0 ) {
+
+				$parent_category = get_category( $parent );
+				$category_link   = get_category_link( $parent );
+
+				echo '<li class="lhi-breadcrumb__item"><a href="'. esc_url( $category_link ) .'">'. $parent_category->name .'</a></li>';
+
+			}
+
+			echo '<li class="lhi-breadcrumb__item lhi-breadcrumb__item--current">'. single_cat_title( '', false ) .'</li>';
+
+		} else if ( is_tag() ) {
+
+			// Get tag information
+			$term_id        = get_query_var('tag_id');
+			$taxonomy       = 'post_tag';
+			$args           = 'include=' . $term_id;
+			$terms          = get_terms( $taxonomy, $args );
+			$get_term_name  = $terms[0]->name;
+
+			// Display the tag name
+			echo '<li class="lhi-breadcrumb__item--current lhi-breadcrumb__item">'. $get_term_name .'</li>';
+
+		} else if ( is_day() ) {
+
+			// Day archive
+
+			// Year link
+			echo '<li class="lhi-breadcrumb__item-year lhi-breadcrumb__item"><a href="'. get_year_link( get_the_time('Y') ) .'">'. get_the_time('Y') . ' Archives</a></li>';
+
+			// Month link
+			echo '<li class="lhi-breadcrumb__item-month lhi-breadcrumb__item"><a href="'. get_month_link( get_the_time('Y'), get_the_time('m') ) .'">'. get_the_time('M') .' Archives</a></li>';
+
+			// Day display
+			echo '<li class="lhi-breadcrumb__item--current lhi-breadcrumb__item">'. get_the_time('jS') .' '. get_the_time('M'). ' Archives</li>';
+
+		} else if ( is_month() ) {
+
+			// Month archive
+
+			// Year link
+			echo '<li class="lhi-breadcrumb__item-year lhi-breadcrumb__item"><a href="'. get_year_link( get_the_time('Y') ) .'">'. get_the_time('Y') . ' Archives</a></li>';
+
+			// Month Display
+			echo '<li class="lhi-breadcrumb__item-month lhi-breadcrumb__item--current lhi-breadcrumb__item">'. get_the_time('M') .' Archives</li>';
+
+		} else if ( is_year() ) {
+
+			// Year Display
+			echo '<li class="lhi-breadcrumb__item-year lhi-breadcrumb__item--current lhi-breadcrumb__item">'. get_the_time('Y') .' Archives</li>';
+
+		} else if ( is_author() ) {
+
+			// Auhor archive
+
+			// Get the author information
+			global $author;
+			$userdata = get_userdata( $author );
+
+			// Display author name
+			echo '<li class="lhi-breadcrumb__item--current lhi-breadcrumb__item">'. 'Author: '. $userdata->display_name . '</li>';
+
+		} else {
+
+			echo '<li class="lhi-breadcrumb__item lhi-breadcrumb__item--current">'. post_type_archive_title() .'</li>';
+
+		}
+
+	} else if ( is_page() ) {
+
+		// Standard page
+		if ( $post->post_parent ) {
+
+			// If child page, get parents
+			$anc = get_post_ancestors( $post->ID );
+
+			// Get parents in the right order
+			$anc = array_reverse( $anc );
+
+			// Parent page loop
+			if ( !isset( $parents ) ) $parents = null;
+			foreach ( $anc as $ancestor ) {
+
+				$parents .= '<li class="lhi-breadcrumb__item-parent lhi-breadcrumb__item"><a href="'. get_permalink( $ancestor ) .'">'. get_the_title( $ancestor ) .'</a></li>';
+
+			}
+
+			// Display parent pages
+			echo $parents;
+
+			// Current page
+			echo '<li class="lhi-breadcrumb__item--current lhi-breadcrumb__item">'. get_the_title() .'</li>';
+
+		} else {
+
+			// Just display current page if not parents
+			echo '<li class="lhi-breadcrumb__item--current lhi-breadcrumb__item">'. get_the_title() .'</li>';
+
+		}
+
+	} else if ( is_search() ) {
+
+		// Search results page
+		echo '<li class="lhi-breadcrumb__item--current lhi-breadcrumb__item">Search results for: '. get_search_query() .'</li>';
+
+	} else if ( is_404() ) {
+
+		// 404 page
+		echo '<li class="lhi-breadcrumb__item--current lhi-breadcrumb__item">' . 'Error 404' . '</li>';
+
+	}
+
+	// End breadcrumb
+	echo '</ul>';
+
+}
 
 /**
  * Enqueue scripts and styles.
@@ -284,9 +508,9 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 
 function lets_hear_it_two_factor_providers( $providers ) {
 	return array(
-	  'Two_Factor_Totp'         => TWO_FACTOR_DIR . 'providers/class-two-factor-totp.php',
-	  'Two_Factor_FIDO_U2F'     => TWO_FACTOR_DIR . 'providers/class-two-factor-fido-u2f.php',
-	  'Two_Factor_Backup_Codes' => TWO_FACTOR_DIR . 'providers/class-two-factor-backup-codes.php',
+		'Two_Factor_Totp'         => TWO_FACTOR_DIR . 'providers/class-two-factor-totp.php',
+		'Two_Factor_FIDO_U2F'     => TWO_FACTOR_DIR . 'providers/class-two-factor-fido-u2f.php',
+		'Two_Factor_Backup_Codes' => TWO_FACTOR_DIR . 'providers/class-two-factor-backup-codes.php',
 	);
 }
 add_filter( 'two_factor_providers', 'lets_hear_it_two_factor_providers' );

@@ -727,9 +727,15 @@ textarea {
 # Layouts {{{1
 --------------------------------------------------------------*/
 
-.site-main,
-.site-footer,
 .site-header {
+	padding: 1em 1em 0 1em;
+}
+
+.site-main {
+	padding: 0 1em;
+}
+
+.site-footer {
 	padding: 1em;
 }
 
@@ -892,6 +898,34 @@ textarea {
 	border: 1px solid;
 	padding: 0.5ch;
 	text-decoration: none;
+}
+
+/* 2}}} */
+
+/* Breadcrumbs {{{2
+--------------------------------------------- */
+
+.lhi-breadcrumb {
+	font-size: 0.9em;
+	max-width: 69ch;
+	margin: 3em auto 0 auto;
+	padding-left: 0;
+	display: flex;
+	flex-flow: row wrap;
+	list-style-type: none;
+}
+
+.lhi-breadcrumb__item {
+	margin-top: 0;
+}
+
+.lhi-breadcrumb__item + .lhi-breadcrumb__item {
+	margin-left: 0.5ch;
+}
+
+.lhi-breadcrumb__item + .lhi-breadcrumb__item::before {
+	content: '»';
+	margin-right: 0.5ch;
 }
 
 /* 2}}} */
