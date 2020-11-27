@@ -411,7 +411,7 @@ function lhi_breadcrumb() {
 
 		} else {
 
-			echo '<li class="lhi-breadcrumb__item lhi-breadcrumb__item--current">'. post_type_archive_title() .'</li>';
+			echo '<li class="lhi-breadcrumb__item lhi-breadcrumb__item--current">' . post_type_archive_title('', false) . '</li>';
 
 		}
 
