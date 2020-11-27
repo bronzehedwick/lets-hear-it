@@ -459,7 +459,7 @@ h3,
 h4,
 h5,
 h6 {
-	margin: 1.8em 0 0;
+	margin-bottom: 0;
 	clear: both;
 }
 
@@ -487,35 +487,12 @@ h6 {
 	font-variation-settings: "wght" 450;
 }
 
-p {
-	margin-bottom: 1.5em;
-}
-
 dfn,
 cite,
 em,
 i {
 	font-variation-settings: "slnt" -8;
 	font-style: italic;
-}
-
-blockquote {
-	margin: 0 1.5em;
-}
-
-address {
-	margin: 0 0 1.5em;
-}
-
-pre {
-	background: var(--background-color-secondary);
-	font-family: Recursive, "Courier 10 Pitch", courier, monospace;
-	font-variation-settings: "MONO" 1, "CASL" 0, "wght" 400, "slnt" 0, "CRSV" 0.5;
-	line-height: 1.6;
-	margin-bottom: 1.6em;
-	max-width: 100%;
-	overflow: auto;
-	padding: 1.6em;
 }
 
 code,
@@ -538,14 +515,14 @@ ins {
 	text-decoration: none;
 }
 
-big {
-	font-size: 125%;
-}
-
 /* 2}}} */
 
 /* Elements {{{2
 --------------------------------------------- */
+* + * {
+	margin-top: 1.25em;
+}
+
 ::selection {
 	color: #fff;
 	background-color: var(--color-primary);	
@@ -555,16 +532,15 @@ body {
 	background-color: var(--background-color-primary);
 }
 
+p {
+	margin-bottom: 0;
+}
+
 hr {
-	background-color: #ccc;
+	background-color: #aaa;
 	border: 0;
 	height: 1px;
 	margin-bottom: 1.5em;
-}
-
-ul,
-ol {
-	margin: 0 0 1.5em 3em;
 }
 
 ul {
@@ -575,10 +551,31 @@ ol {
 	list-style: decimal;
 }
 
-li > ul,
-li > ol {
-	margin-bottom: 0;
-	margin-left: 1.5em;
+li + li {
+	margin-top: 0.25em;
+}
+
+nav li + li {
+	margin-top: 0;
+}
+
+blockquote {
+	margin: 0 1.5em;
+}
+
+address {
+	margin: 0 0 1.5em;
+}
+
+pre {
+	background: var(--background-color-secondary);
+	font-family: Recursive, "Courier 10 Pitch", courier, monospace;
+	font-variation-settings: "MONO" 1, "CASL" 0, "wght" 400, "slnt" 0, "CRSV" 0.5;
+	line-height: 1.6;
+	margin-bottom: 1.6em;
+	max-width: 100%;
+	overflow: auto;
+	padding: 1.6em;
 }
 
 dt {
@@ -856,14 +853,6 @@ textarea {
 	}
 }
 
-.site-main .comment-navigation,
-.site-main
-.posts-navigation,
-.site-main
-.post-navigation {
-	margin: 0 0 1.5em;
-}
-
 .comment-navigation .nav-links,
 .posts-navigation .nav-links,
 .post-navigation .nav-links {
@@ -895,15 +884,14 @@ textarea {
 	display: none;
 }
 
-.page-content,
-.entry-content,
-.entry-summary {
-	margin: 1.5em 0 0;
-}
-
 .page-links {
 	clear: both;
-	margin: 0 0 1.5em;
+}
+
+.post-edit-link {
+	border: 1px solid;
+	padding: 0.5ch;
+	text-decoration: none;
 }
 
 /* 2}}} */
@@ -928,99 +916,6 @@ textarea {
 }
 
 /* 2}}}
-
-/* Media {{{2
---------------------------------------------- */
-.page-content .wp-smiley,
-.entry-content .wp-smiley,
-.comment-content .wp-smiley {
-	border: none;
-	margin-bottom: 0;
-	margin-top: 0;
-	padding: 0;
-}
-
-/* Make sure logo link wraps around logo image. */
-.custom-logo-link {
-	display: inline-block;
-}
-
-/* 2}}} */
-
-/* Captions {{{2
---------------------------------------------- */
-.wp-caption {
-	margin-bottom: 1.5em;
-	max-width: 100%;
-}
-
-.wp-caption img[class*="wp-image-"] {
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-}
-
-.wp-caption .wp-caption-text {
-	margin: 0.8075em 0;
-}
-
-.wp-caption-text {
-	text-align: center;
-}
-
-/* 2}}} */
-
-/* Galleries {{{2
---------------------------------------------- */
-.gallery {
-	margin-bottom: 1.5em;
-	display: grid;
-	grid-gap: 1.5em;
-}
-
-.gallery-item {
-	display: inline-block;
-	text-align: center;
-	width: 100%;
-}
-
-.gallery-columns-2 {
-	grid-template-columns: repeat(2, 1fr);
-}
-
-.gallery-columns-3 {
-	grid-template-columns: repeat(3, 1fr);
-}
-
-.gallery-columns-4 {
-	grid-template-columns: repeat(4, 1fr);
-}
-
-.gallery-columns-5 {
-	grid-template-columns: repeat(5, 1fr);
-}
-
-.gallery-columns-6 {
-	grid-template-columns: repeat(6, 1fr);
-}
-
-.gallery-columns-7 {
-	grid-template-columns: repeat(7, 1fr);
-}
-
-.gallery-columns-8 {
-	grid-template-columns: repeat(8, 1fr);
-}
-
-.gallery-columns-9 {
-	grid-template-columns: repeat(9, 1fr);
-}
-
-.gallery-caption {
-	display: block;
-}
-
-/* 2}}} */
 
 /* Logo {{{2
 --------------------------------------------- */
@@ -1052,7 +947,6 @@ textarea {
 }
 
 .recent-episodes__main-title {
-	margin-bottom: 1em;
 	width: 100%;
 }
 
@@ -1094,6 +988,7 @@ textarea {
 ----------------------------------------------*/
 
 .site-footer {
+	margin-top: 0;
 	padding-top: 1em;
 	text-align: center;
 	background-color: var(--background-color-secondary);
