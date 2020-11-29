@@ -193,7 +193,7 @@ Class LHI_Recent_Episodes extends SeriouslySimplePodcasting\Widgets\Recent_Episo
 			echo $args['before_title'] . $title . $args['after_title'];
 		} ?>
 		<?php while ( $qry->have_posts() ) : $qry->the_post(); ?>
-		<div class="recent-episodes__lhi-breadcrumb__item">
+		<div class="recent-episodes__item">
 			<?php $series = get_the_terms( get_the_ID(), 'series' )[0];
 			$series_id = $series->term_id;
 			$series_image = get_option( "ss_podcasting_data_image_{$series_id}", false );
