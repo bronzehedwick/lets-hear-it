@@ -1079,6 +1079,10 @@ textarea {
 	cursor: pointer;
 }
 
+.castos-player > * + * {
+	margin-top: 0;
+}
+
 /* 2}}} */
 
 /* Jetpack infinite scroll {{{2
