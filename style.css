@@ -1079,7 +1079,7 @@ textarea {
 	cursor: pointer;
 }
 
-.castos-player > * + * {
+.castos-player * + * {
 	margin-top: 0;
 }
 
