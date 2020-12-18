@@ -744,6 +744,14 @@ textarea {
 	margin: 0 auto;
 }
 
+.entry-title {
+	margin-top: 1.25em;
+}
+
+#wpadminbar {
+	margin-top: 0;
+}
+
 /* 1}}} */
 
 /*--------------------------------------------------------------
@@ -985,7 +993,8 @@ textarea {
 }
 
 .recent-episodes__item {
-	width: 20ch;
+	width: 19ch;
+	margin-right: 1ch;
 }
 
 .recent-episodes__image {
