@@ -514,6 +514,49 @@ function lhi_css_js_versioning() {
 add_action('init', 'lhi_css_js_versioning');
 
 /**
+ * Head hook
+ * @see https://developer.wordpress.org/reference/hooks/wp_head/
+ */
+function lets_hear_it_head() {
+	$title = get_the_title();
+	$content = wp_filter_nohtml_kses( get_the_content() );
+	if ( is_front_page() ) {
+		$title = "Let's Hear It - Make More Fun";
+		$content = "A truly independent podcast artist collective.";
+	}
+	$series = get_the_terms( get_the_ID(), 'series' )[0];
+	$series_image = 'https://letshearit.network/wp-content/themes/lets-hear-it/logo.png';
+	if ( !empty($series) ) {
+		$content = $series->description;
+		$series_image = get_option( "ss_podcasting_data_image_{$series->term_id}", false );
+	}
+	?>
+
+	<meta name="description" content="<?php echo $content; ?>">
+
+	<!-- Google / Search Engine Tags -->
+	<meta itemprop="name" content="<?php echo $title; ?>">
+	<meta itemprop="description" content="<?php echo $content; ?>">
+	<meta itemprop="image" content="<?php echo $series_image; ?>">
+
+	<!-- Facebook Meta Tags -->
+	<meta property="og:url" content="<?php get_the_permalink(); ?>">
+	<meta property="og:type" content="website">
+	<meta property="og:title" content="<?php echo $title; ?>">
+	<meta property="og:description" content="<?php echo $content; ?>">
+	<meta property="og:image" content="<?php echo $series_image; ?>">
+
+	<!-- Twitter Meta Tags -->
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:title" content="<?php echo $title; ?>">
+	<meta name="twitter:description" content="<?php echo $content; ?>">
+	<meta name="twitter:image" content="<?php echo $series_image; ?>">
+	
+	<?php
+}
+add_action( 'wp_head', 'lets_hear_it_head' );
+
+/**
  * Enqueue scripts and styles.
  */
 function lets_hear_it_scripts() {

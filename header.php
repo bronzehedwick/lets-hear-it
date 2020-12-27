@@ -18,26 +18,6 @@
 	<link rel="profile" href="https://gmpg.org/xfn/11">
 
 	<?php wp_head(); ?>
-
-	<meta name="description" content="A truly independent podcast artist collective.">
-
-	<!-- Google / Search Engine Tags -->
-	<meta itemprop="name" content="Let's Hear It – Make more fun">
-	<meta itemprop="description" content="A truly independent podcast artist collective.">
-	<meta itemprop="image" content="https://letshearit.network/wp-content/themes/lets-hear-it/logo.png">
-
-	<!-- Facebook Meta Tags -->
-	<meta property="og:url" content="https://letshearit.network">
-	<meta property="og:type" content="website">
-	<meta property="og:title" content="Let's Hear It – Make more fun">
-	<meta property="og:description" content="A truly independent podcast artist collective.">
-	<meta property="og:image" content="https://letshearit.network/wp-content/themes/lets-hear-it/logo.png">
-
-	<!-- Twitter Meta Tags -->
-	<meta name="twitter:card" content="summary_large_image">
-	<meta name="twitter:title" content="Let's Hear It – Make more fun">
-	<meta name="twitter:description" content="A truly independent podcast artist collective.">
-	<meta name="twitter:image" content="https://letshearit.network/wp-content/themes/lets-hear-it/logo.png">
 </head>
 
 <body <?php body_class(); ?>>
