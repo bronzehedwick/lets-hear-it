@@ -519,10 +519,9 @@ add_action('init', 'lhi_css_js_versioning');
  */
 function lets_hear_it_head() {
 	$title = get_the_title();
-	$content = wp_filter_nohtml_kses( get_the_content() );
+	$content = "A truly independent podcast artist collective.";
 	if ( is_front_page() ) {
 		$title = "Let's Hear It - Make More Fun";
-		$content = "A truly independent podcast artist collective.";
 	}
 	$series = get_the_terms( get_the_ID(), 'series' )[0];
 	$series_image = 'https://letshearit.network/wp-content/themes/lets-hear-it/logo.png';
