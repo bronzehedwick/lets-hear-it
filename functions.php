@@ -550,7 +550,7 @@ function lets_hear_it_head() {
 	<meta name="twitter:title" content="<?php echo $title; ?>">
 	<meta name="twitter:description" content="<?php echo $content; ?>">
 	<meta name="twitter:image" content="<?php echo $series_image; ?>">
-	
+
 	<?php
 }
 add_action( 'wp_head', 'lets_hear_it_head' );
@@ -559,6 +559,7 @@ add_action( 'wp_head', 'lets_hear_it_head' );
  * Enqueue scripts and styles.
  */
 function lets_hear_it_scripts() {
+	wp_dequeue_style( 'ssp-recent-episodes' );
 	wp_enqueue_style( 'lets-hear-it-style', get_stylesheet_uri(), array(), _S_VERSION );
 	wp_style_add_data( 'lets-hear-it-style', 'rtl', 'replace' );
 
