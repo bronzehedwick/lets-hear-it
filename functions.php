@@ -174,7 +174,7 @@ function lhi_the_content( $content ) {
 			$content .= '<img class="recent-episodes__image" loading="lazy" alt="" srcset="' . $img_medium[0] . ' ' . $img_medium[1] . 'w, ' . $img_small[0] . ' ' . $img_small[1] . 'w" sizes="150px" src="' . $img_small[0] . '">';
 			$content .= '</a>';
 			$content .= '<h2 class="recent-episodes__title">';
-			$content .= '<a href="' . get_permalink( $series->term_id ) . '">';
+			$content .= '<a href="' . get_term_link( $series->term_id ) . '">';
 			$content .= $series->name;
 			$content .= '</a>';
 			$content .= '</h2>';
