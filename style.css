@@ -608,6 +608,15 @@ table {
 	width: 100%;
 }
 
+summary {
+	font-variation-settings: "wght" 600;
+	cursor: pointer;
+}
+
+summary + div {
+	margin-left: 2ch;
+}
+
 /* 2}}} */
 
 /* Links {{{2
