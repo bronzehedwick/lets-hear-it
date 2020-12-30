@@ -643,6 +643,12 @@ a:active {
 	outline: 0;
 }
 
+.link-no-hover:hover {
+	background-color: transparent;
+	color: inherit;
+	text-decoration-color: inherit;
+}
+
 /* 2}}} */
 
 /* Forms {{{2

@@ -148,6 +148,44 @@ function lets_hear_it_widgets_init() {
 }
 add_action( 'widgets_init', 'lets_hear_it_widgets_init' );
 
+function lhi_the_content( $content ) {
+	global $post;
+	if ( !is_front_page() && $post->post_name == 'series' ) {
+		$series_items = get_terms(
+			array('series'),
+			array(
+				'hide_empty' => true,
+				'orderby' => 'name',
+				'order' => 'ASC',
+			)
+		);
+		$content = '<div class="recent-episodes"><br>';
+		foreach ($series_items as $series) {
+			$series_id = $series->term_id;
+			$series_image = get_option( "ss_podcasting_data_image_{$series_id}", false );
+			if ( empty( $series_image ) ) {
+				continue;
+			}
+			$series_image_attachment_id = attachment_url_to_postid( $series_image );
+			$img_small = wp_get_attachment_image_src( $series_image_attachment_id, 'thumbnail' );
+			$img_medium = wp_get_attachment_image_src( $series_image_attachment_id, 'medium' );
+			$content .= '<div class="recent-episodes__item">';
+			$content .= '<a class="link-no-hover" href="' . get_permalink( $series->term_id ) . '">';
+			$content .= '<img class="recent-episodes__image" loading="lazy" alt="" srcset="' . $img_medium[0] . ' ' . $img_medium[1] . 'w, ' . $img_small[0] . ' ' . $img_small[1] . 'w" sizes="150px" src="' . $img_small[0] . '">';
+			$content .= '</a>';
+			$content .= '<h2 class="recent-episodes__title">';
+			$content .= '<a href="' . get_permalink( $series->term_id ) . '">';
+			$content .= $series->name;
+			$content .= '</a>';
+			$content .= '</h2>';
+			$content .= '</div>';
+		}
+		$content .= '</div>';
+	}
+	return $content;
+}
+add_filter( 'the_content', 'lhi_the_content', 100 );
+
 Class LHI_Recent_Episodes extends SeriouslySimplePodcasting\Widgets\Recent_Episodes {
 	function widget( $args, $instance ) {
 		$cache = array();
@@ -203,7 +241,9 @@ Class LHI_Recent_Episodes extends SeriouslySimplePodcasting\Widgets\Recent_Episo
 				$img_medium = wp_get_attachment_image_src( $series_image_attachment_id, 'medium' );
 			} ?>
 		<?php if ( $series_image ) : ?>
-		  <img class="recent-episodes__image" loading="lazy" srcset="<?php echo $img_medium[0] . ' ' . $img_medium[1] . 'w, ' . $img_small[0] . ' ' . $img_small[1] . 'w'; ?>" sizes="150px" src="<?php echo $img_small[0]; ?>">
+			<a class="link-no-hover" href="<?php the_permalink(); ?>">
+				<img class="recent-episodes__image" loading="lazy" alt="" srcset="<?php echo $img_medium[0] . ' ' . $img_medium[1] . 'w, ' . $img_small[0] . ' ' . $img_small[1] . 'w'; ?>" sizes="150px" src="<?php echo $img_small[0]; ?>">
+			</a>
 		<?php endif; ?>
 		<h3 class="recent-episodes__title">
 		  <a href="<?php the_permalink(); ?>"><?php get_the_title() ? the_title() : the_ID(); ?></a>
