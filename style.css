@@ -749,6 +749,7 @@ textarea {
 
 .site-header {
 	padding: 1em 1em 0 1em;
+	margin-top: 0;
 }
 
 .site-main {
