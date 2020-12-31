@@ -657,17 +657,22 @@ button,
 input[type="button"],
 input[type="reset"],
 input[type="submit"] {
-	border: 1px solid var(--color-primary);
+	border: 1px solid var(--color-main-text);
 	border-radius: 3px;
 	background: var(--color-primary);
 	color: rgba(0, 0, 0, 0.8);
 	line-height: 1;
 	padding: 0.5em 1em;
 	cursor: pointer;
+	transition: transform 150ms;
 }
 
 button:hover,
-input[type="button"]:hover,
+input[type="button"]:hover {
+	transform: scale(103%);
+	box-shadow: 2px 2px 0px #000;
+}
+
 input[type="reset"]:hover,
 input[type="submit"]:hover {
 	border-color: var(--color-main-text);
