@@ -1058,8 +1058,11 @@ textarea {
 
 .site-footer__graphic {
 	display: block;
-	min-height: 10em;
-	margin-top: 5em;
+	width: 1920px;
+}
+
+.site-footer__graphic path:hover {
+	stroke: limegreen;
 }
 
 .site-footer__menu ul {
