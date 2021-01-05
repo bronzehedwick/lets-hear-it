@@ -551,6 +551,11 @@ ol {
 	list-style: decimal;
 }
 
+li ol,
+li ul {
+	margin-bottom: 1.25em;
+}
+
 li + li {
 	margin-top: 0.25em;
 }
