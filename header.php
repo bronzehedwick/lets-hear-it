@@ -58,5 +58,5 @@ if ( is_front_page() && is_home() ) : ?>
 		);
 ?>
 		</nav><!-- #site-navigation -->
-		<?php lhi_breadcrumb(); ?>
+		<?php lets_hear_it_breadcrumb(); ?>
 	</header><!-- #masthead -->

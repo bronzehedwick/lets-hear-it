@@ -148,7 +148,7 @@ function lets_hear_it_widgets_init() {
 }
 add_action( 'widgets_init', 'lets_hear_it_widgets_init' );
 
-function lhi_the_content( $content ) {
+function lets_hear_it_the_content( $content ) {
 	global $post;
 	if ( !is_front_page() && $post->post_name == 'series' ) {
 		$series_items = get_terms(
@@ -184,9 +184,9 @@ function lhi_the_content( $content ) {
 	}
 	return $content;
 }
-add_filter( 'the_content', 'lhi_the_content', 100 );
+add_filter( 'the_content', 'lets_hear_it_the_content', 100 );
 
-Class LHI_Recent_Episodes extends SeriouslySimplePodcasting\Widgets\Recent_Episodes {
+Class Lets_Hear_It_Recent_Episodes extends SeriouslySimplePodcasting\Widgets\Recent_Episodes {
 	function widget( $args, $instance ) {
 		$cache = array();
 		if ( ! $this->is_preview() ) {
@@ -272,13 +272,13 @@ Class LHI_Recent_Episodes extends SeriouslySimplePodcasting\Widgets\Recent_Episo
 	}
 }
 
-function lhi_recent_episodes_widget_register() {
-	unregister_widget( 'LHI_Recent_Episodes' );
-	register_widget( 'LHI_Recent_Episodes' );
+function lets_hear_it_recent_episodes_widget_register() {
+	unregister_widget( 'Lets_Hear_It_Recent_Episodes' );
+	register_widget( 'Lets_Hear_It_Recent_Episodes' );
 }
-add_action( 'widgets_init', 'lhi_recent_episodes_widget_register' );
+add_action( 'widgets_init', 'lets_hear_it_recent_episodes_widget_register' );
 
-function lhi_breadcrumb() {
+function lets_hear_it_breadcrumb() {
 	if ( is_front_page() ) {
 		return;
 	}
@@ -514,7 +514,7 @@ function lhi_breadcrumb() {
  * @see https://medium.com/@futuremediagr/easy-versioning-for-css-and-js-files-in-wordpress-e7dad756586c
  * @see https://gist.github.com/ocean90/1966227
  */
-function lhi_set_custom_ver_css_js($src) {
+function lets_hear_it_set_custom_ver_css_js($src) {
 	// Don't touch admin scripts.
 	if (is_admin()) {
 		return $src;
@@ -546,12 +546,16 @@ function lhi_set_custom_ver_css_js($src) {
 	return $src;
 }
 
-function lhi_css_js_versioning() {
-	add_filter('style_loader_src', 'lhi_set_custom_ver_css_js', 9999);
-	add_filter('script_loader_src', 'lhi_set_custom_ver_css_js', 9999);
+/**
+ * Init hook
+ * @see https://developer.wordpress.org/reference/hooks/init/
+ */
+function lets_hear_it_init() {
+	// Custom scripts.
+	add_filter('style_loader_src', 'lets_hear_it_set_custom_ver_css_js', 9999);
+	add_filter('script_loader_src', 'lets_hear_it_set_custom_ver_css_js', 9999);
 }
-
-add_action('init', 'lhi_css_js_versioning');
+add_action('init', 'lets_hear_it_init');
 
 /**
  * Head hook
