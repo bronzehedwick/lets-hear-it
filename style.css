@@ -610,8 +610,17 @@ figure {
 }
 
 table {
-	margin: 0 0 1.5em;
 	width: 100%;
+	border-collapse: collapse;
+}
+
+thead {
+	text-align: left;
+	font-variation-settings: "wght" 800;
+}
+
+tbody tr:nth-child(even) {
+	background-color: var(--background-color-secondary);
 }
 
 summary {

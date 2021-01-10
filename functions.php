@@ -150,6 +150,7 @@ add_action( 'widgets_init', 'lets_hear_it_widgets_init' );
 
 function lets_hear_it_the_content( $content ) {
 	global $post;
+
 	if ( !is_front_page() && $post->post_name == 'series' ) {
 		$series_items = get_terms(
 			array('series'),
@@ -182,6 +183,39 @@ function lets_hear_it_the_content( $content ) {
 		}
 		$content .= '</div>';
 	}
+
+	$post_type = get_post_type();
+	$category = get_the_category( $post->ID );
+	if ( $post_type == 'post' && $category[0]->name == 'Budget' ) {
+		$content .= '<table>';
+		$content .= '<thead>';
+		$content .= '<tr>';
+		$content .= '<th>Name</th>';
+		$content .= '<th>Amount</th>';
+		$content .= '</tr>';
+		$content .= '</thead>';
+		$content .= '<tbody>';
+		$total = 0;
+		foreach ( get_post_custom() as $field_key => $field_value ) {
+			if (strpos($field_key, '_') === 0) { continue; }
+			$amount = floatval($field_value[0]);
+			$total += $amount;
+			$row_class_name = $amount < 0 ? 'financial__cost' : 'financial__revenue';
+			$content .= '<tr class="' . $row_class_name . '">';
+			$content .= '<td>';
+			$content .= ucfirst($field_key);
+			$content .= '</td>';
+			$content .= '<td>';
+			$content .= $amount;
+			$content .= '</td>';
+			$content .= '</tr>';
+		}
+		$content .= '</tbody>';
+		$content .= '</table>';
+		$total_class_name = $total < 0 ? 'financial__total-red' : 'financial__total-black';
+		$content .= '<p class="' . $total_class_name . '"><strong>Total: </strong>' . $total . '</p>';
+	}
+
 	return $content;
 }
 add_filter( 'the_content', 'lets_hear_it_the_content', 100 );
