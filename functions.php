@@ -633,6 +633,67 @@ function lets_hear_it_head() {
 }
 add_action( 'wp_head', 'lets_hear_it_head' );
 
+// A callback function to add a custom field to our "presenters" taxonomy
+function lets_hear_it_taxonomy_custom_fields($tag) {
+	// Check for existing taxonomy meta for the term you're editing
+	$t_id = $tag->term_id; // Get the ID of the term you're editing
+	$term_meta = get_option( "taxonomy_term_$t_id" ); // Do the check
+?>
+
+<tr class="form-field">
+	<th scope="row" valign="top">
+		<label for="twitter_url"><?php _e('Twitter URL'); ?></label>
+	</th>
+	<td>
+		<input type="text" name="term_meta[twitter_url]" id="term_meta[twitter_url]" size="25" style="width:60%;" value="<?php echo $term_meta['twitter_url'] ? $term_meta['twitter_url'] : ''; ?>"><br />
+		<span class="description"><?php _e('The show\'s twitter URL.'); ?></span>
+	</td>
+</tr>
+
+<tr class="form-field">
+	<th scope="row" valign="top">
+		<label for="instagram_url"><?php _e('Instagram URL'); ?></label>
+	</th>
+	<td>
+		<input type="text" name="term_meta[instagram_url]" id="term_meta[instagram_url]" size="25" style="width:60%;" value="<?php echo $term_meta['instagram_url'] ? $term_meta['instagram_url'] : ''; ?>"><br />
+		<span class="description"><?php _e('The show\'s instagram URL.'); ?></span>
+	</td>
+</tr>
+
+<tr class="form-field">
+	<th scope="row" valign="top">
+		<label for="youtube_url"><?php _e('YouTube URL'); ?></label>
+	</th>
+	<td>
+		<input type="text" name="term_meta[youtube_url]" id="term_meta[youtube_url]" size="25" style="width:60%;" value="<?php echo $term_meta['youtube_url'] ? $term_meta['youtube_url'] : ''; ?>"><br />
+		<span class="description"><?php _e('The show\'s youtube URL.'); ?></span>
+	</td>
+</tr>
+
+<?php
+}
+
+// A callback function to save our extra taxonomy field(s)
+function lets_hear_it_save_taxonomy_custom_fields( $term_id ) {
+	if ( isset( $_POST['term_meta'] ) ) {
+		$t_id = $term_id;
+		$term_meta = get_option( "taxonomy_term_$t_id" );
+		$cat_keys = array_keys( $_POST['term_meta'] );
+			foreach ( $cat_keys as $key ){
+			if ( isset( $_POST['term_meta'][$key] ) ){
+				$term_meta[$key] = $_POST['term_meta'][$key];
+			}
+		}
+		//save the option array
+		update_option( "taxonomy_term_$t_id", $term_meta );
+	}
+}
+
+// Add the fields to the "series" taxonomy, using our callback function
+add_action( 'series_edit_form_fields', 'lets_hear_it_taxonomy_custom_fields', 10, 2 );
+// Save the changes made on the "series" taxonomy, using our callback function
+add_action( 'edited_series', 'lets_hear_it_save_taxonomy_custom_fields', 10, 2 );
+
 /**
  * Enqueue scripts and styles.
  */
