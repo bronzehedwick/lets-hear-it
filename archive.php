@@ -17,6 +17,16 @@ get_header();
 			<header class="page-header">
 				<?php
 				the_archive_title( '<h1 class="page-title">', '</h1>' );
+				if ( get_post_type() == 'podcast' ) {
+					$series = get_the_terms( get_the_ID(), 'series' )[0];
+					$series_id = $series->term_id;
+					$series_image = get_option( "ss_podcasting_data_image_{$series_id}", false );
+					if ( $series_image ) {
+						$series_image_attachment_id = attachment_url_to_postid( $series_image );
+						$img_large = wp_get_attachment_image_src( $series_image_attachment_id, 'large' );
+						echo '<div class="archive-image"><img class="recent-episodes__image" src="' . $img_large[0] . '" width="' . $img_large[1] / 2 . '" height="' . $img_large[2] / 2 . '" alt=""></div>';
+					}
+				}
 				the_archive_description( '<div class="archive-description">', '</div>' );
 				?>
 			</header><!-- .page-header -->

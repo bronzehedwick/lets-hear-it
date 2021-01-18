@@ -944,6 +944,11 @@ textarea {
 	text-decoration: none;
 }
 
+.archive-image {
+	float: left;
+	margin-right: 1ch;
+}
+
 /* 2}}} */
 
 /* Breadcrumbs {{{2
