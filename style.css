@@ -951,7 +951,7 @@ textarea {
 
 .archive-meta__social {
 	display: flex;
-	justify-content: space-around;
+	justify-content: center;
 	margin: 0.5em 0;
 	padding-left: 0;
 	list-style-type: none;
@@ -959,6 +959,10 @@ textarea {
 
 .archive-meta__social-item {
 	margin: 0;
+}
+
+.archive-meta__social-item + .archive-meta__social-item {
+	margin-left: 1em;
 }
 
 .archive-meta__social-link:hover {
