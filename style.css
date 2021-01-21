@@ -944,12 +944,15 @@ textarea {
 	text-decoration: none;
 }
 
-.archive-meta {
-	float: left;
-	margin-right: 1ch;
+@media screen and (min-width: 550px) {
+	.archive-meta {
+		float: left;
+		margin-right: 1ch;
+	}
 }
 
 .archive-meta__social {
+	max-width: 320px;
 	display: flex;
 	justify-content: center;
 	margin: 0.5em 0;
