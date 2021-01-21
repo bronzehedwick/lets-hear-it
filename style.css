@@ -957,6 +957,10 @@ textarea {
 	list-style-type: none;
 }
 
+.archive-meta__social svg path {
+	fill: currentColor;
+}
+
 .archive-meta__social-item {
 	margin: 0;
 }
