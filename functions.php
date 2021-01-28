@@ -745,3 +745,6 @@ function lets_hear_it_two_factor_providers( $providers ) {
 	);
 }
 add_filter( 'two_factor_providers', 'lets_hear_it_two_factor_providers' );
+
+/* vim: tabstop=4 shiftwidth=4 noexpandtab nolist
+ */

@@ -974,6 +974,7 @@ textarea {
 
 .archive-meta__social-link:hover {
 	background-color: transparent;
+	color: var(--color-main-text);
 }
 
 /* 2}}} */
@@ -1265,3 +1266,6 @@ textarea {
 /* 2}}} */
 
 /* 1}}} */
+
+/* vim: tabstop=4 shiftwidth=4 noexpandtab nolist
+ */

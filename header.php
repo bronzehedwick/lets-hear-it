@@ -60,3 +60,7 @@ if ( is_front_page() && is_home() ) : ?>
 		</nav><!-- #site-navigation -->
 		<?php lets_hear_it_breadcrumb(); ?>
 	</header><!-- #masthead -->
+
+<?php
+// vim: tabstop=4 shiftwidth=4 noexpandtab nolist
+?>
