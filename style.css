@@ -1096,6 +1096,37 @@ textarea {
 
 /* 2}}} */
 
+/* Artists {{{2
+----------------------------------------------*/
+
+.artists {
+  list-style-type: none;
+  padding-left: 0;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.artist {
+  display: flex;
+  align-items: center;
+  margin-right: 2em;
+  margin-top: 1em;
+}
+
+.artist__name {
+	margin-left: 0.5ch;
+}
+
+.artist .avatar {
+	border-radius: 50%;
+	border: 2px solid;
+}
+
+/* 2}}} */
+
+
 /* Footer {{{2
 ----------------------------------------------*/
 

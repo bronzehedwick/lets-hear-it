@@ -52,3 +52,7 @@
 		</footer><!-- .entry-footer -->
 	<?php endif; ?>
 </article><!-- #post-<?php the_ID(); ?> -->
+
+<!--
+vim: tabstop=4 shiftwidth=4 noexpandtab nolist
+-->

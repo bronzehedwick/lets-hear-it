@@ -49,3 +49,7 @@
 		?>
 	</div><!-- .page-content -->
 </section><!-- .no-results -->
+
+<!--
+vim: tabstop=4 shiftwidth=4 noexpandtab nolist
+-->

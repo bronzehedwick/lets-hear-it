@@ -38,3 +38,6 @@ get_header();
 <?php
 get_sidebar();
 get_footer();
+
+/* vim: tabstop=4 shiftwidth=4 noexpandtab nolist
+ */

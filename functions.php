@@ -588,8 +588,24 @@ function lets_hear_it_init() {
 	// Custom scripts.
 	add_filter('style_loader_src', 'lets_hear_it_set_custom_ver_css_js', 9999);
 	add_filter('script_loader_src', 'lets_hear_it_set_custom_ver_css_js', 9999);
+	// Rewrite URLs.
+	add_rewrite_rule(
+		'artists/([0-9]+)/?$',
+		'index.php?pagename=artists&user_id=$matches[1]',
+		'top'
+	);
 }
-add_action('init', 'lets_hear_it_init');
+add_action( 'init', 'lets_hear_it_init' );
+
+/**
+ * Query variables hook
+ * @see https://developer.wordpress.org/reference/hooks/query_vars/
+ */
+function lets_hear_it_query_vars() {
+	$query_vars[] = 'user_id';
+	return $query_vars;
+}
+add_filter( 'query_vars', 'lets_hear_it_query_vars' );
 
 /**
  * Head hook

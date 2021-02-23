@@ -18,7 +18,21 @@ get_header();
 	<main id="primary" class="site-main">
 
 		<?php
-		if ( have_posts() ) :
+		global $wp;
+		if ( strpos( $wp->request, 'artist' ) !== FALSE ) :
+
+			echo '<ul class="artists">';
+
+			foreach ( get_users() as $user ) {
+				echo '<li class="artist">';
+				echo get_avatar($user->data->ID);
+				echo '<span class="artist__name">' . $user->data->display_name . '</span>';
+				echo '</li>';
+			}
+
+			echo '</ul>';
+
+		elseif ( have_posts() ) :
 
 			if ( is_home() && ! is_front_page() ) :
 				?>
@@ -63,3 +77,7 @@ get_header();
 <?php
 get_sidebar();
 get_footer();
+
+/*
+vim: tabstop=4 shiftwidth=4 noexpandtab nolist
+*/
