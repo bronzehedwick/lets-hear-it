@@ -601,7 +601,7 @@ add_action( 'init', 'lets_hear_it_init' );
  * Query variables hook
  * @see https://developer.wordpress.org/reference/hooks/query_vars/
  */
-function lets_hear_it_query_vars() {
+function lets_hear_it_query_vars( $query_vars ) {
 	$query_vars[] = 'user_id';
 	return $query_vars;
 }
@@ -725,6 +725,17 @@ function lets_hear_it_scripts() {
 	}
 }
 add_action( 'wp_enqueue_scripts', 'lets_hear_it_scripts' );
+
+/**
+ * Pipe /artists to a template.
+ */
+function lets_hear_it_template_includes( $template ) {
+	if ( get_the_ID() == 378) {
+		return get_template_directory() . '/artists.php';	
+	}
+	return $template;
+}
+add_action( 'template_include', 'lets_hear_it_template_includes' );
 
 /**
  * Implement the Custom Header feature.
