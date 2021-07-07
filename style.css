@@ -1109,10 +1109,9 @@ textarea {
 }
 
 .artist {
+	flex: 0 1 25ch;
 	display: flex;
-	align-items: center;
-	margin-right: 2em;
-	margin-top: 1em;
+	margin: 2em 2em 0 0;
 }
 
 .artist__name {
