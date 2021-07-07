@@ -388,22 +388,22 @@ template {
 /* Inherit box-sizing to more easily change it's value on a component level.
 @link http://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/ */
 *,
-*::before,
-*::after {
-	box-sizing: inherit;
-}
+	*::before,
+	*::after {
+		box-sizing: inherit;
+	}
 
-html {
-	box-sizing: border-box;
-}
+	html {
+		box-sizing: border-box;
+	}
 
-/* }}} */
+	/* }}} */
 
-/* }}} */
+	/* }}} */
 
-/*--------------------------------------------------------------
-# Base {{{1
---------------------------------------------------------------*/
+	/*--------------------------------------------------------------
+	# Base {{{1
+	--------------------------------------------------------------*/
 
 /* Variables {{{2
 --------------------------------------------- */
@@ -1100,19 +1100,19 @@ textarea {
 ----------------------------------------------*/
 
 .artists {
-  list-style-type: none;
-  padding-left: 0;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-  align-items: center;
+	list-style-type: none;
+	padding-left: 0;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+	align-items: center;
 }
 
 .artist {
-  display: flex;
-  align-items: center;
-  margin-right: 2em;
-  margin-top: 1em;
+	display: flex;
+	align-items: center;
+	margin-right: 2em;
+	margin-top: 1em;
 }
 
 .artist__name {
@@ -1184,7 +1184,7 @@ textarea {
 .ssp-player.ssp-player-large .ssp-playback-speed-label-container,
 .ssp-time-volume .ssp-volume,
 .ssp-download-container {
-  margin-top: 0;
+	margin-top: 0;
 }
 
 .ssp-play-pause {
