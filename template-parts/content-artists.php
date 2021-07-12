@@ -4,7 +4,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
- * @package Let\'s_Hear_It
+ * @package Lets_Hear_It
  */
 
 ?>
@@ -17,14 +17,16 @@
 	<?php lets_hear_it_post_thumbnail(); ?>
 
 	<div class="entry-content">
-            <ul class="artists">
-                <?php foreach ( get_users() as $user ) {
-                    echo '<li class="artist">';
-                    echo get_avatar($user->data->ID);
-                    echo '<span class="artist__name">' . $user->data->display_name . '</span>';
-                    echo '</li>';
-                } ?>
-            </ul>
+		<ul class="artists">
+			<?php foreach ( get_users() as $user ) {
+				echo '<li class="artist">';
+				echo '<a class="artist__link" href="/author/' . $user->data->user_nicename . '">';
+				echo get_avatar($user->data->ID);
+				echo '<span class="artist__name">' . $user->data->display_name . '</span>';
+				echo '</a>';
+				echo '</li>';
+			} ?>
+		</ul>
 
 		<?php
 		wp_link_pages(

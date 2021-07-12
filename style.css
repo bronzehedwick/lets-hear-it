@@ -926,6 +926,10 @@ textarea {
 
 /* Posts and pages {{{2
 --------------------------------------------- */
+.entry-content {
+	display: flow-root;
+}
+
 .sticky {
 	display: block;
 }
@@ -1110,6 +1114,9 @@ textarea {
 
 .artist {
 	flex: 0 1 25ch;
+}
+
+.artist__link {
 	display: flex;
 	margin: 2em 2em 0 0;
 }
@@ -1118,9 +1125,15 @@ textarea {
 	margin-left: 0.5ch;
 }
 
-.artist .avatar {
+.avatar {
 	border-radius: 50%;
 	border: 2px solid;
+}
+
+.avatar.alignleft {
+  shape-outside: content-box;
+  shape-margin: 1em;
+  margin-bottom: 0;
 }
 
 /* 2}}} */
