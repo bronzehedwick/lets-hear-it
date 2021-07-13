@@ -275,15 +275,15 @@ Class Lets_Hear_It_Recent_Episodes extends SeriouslySimplePodcasting\Widgets\Rec
 				$img_medium = wp_get_attachment_image_src( $series_image_attachment_id, 'medium' );
 			} ?>
 		<?php if ( $series_image ) : ?>
-			<a class="link-no-hover" href="<?php the_permalink(); ?>">
+			<a class="link-no-hover" tabindex="-1" aria-hidden="true" href="<?php the_permalink(); ?>">
 				<img class="recent-episodes__image" loading="lazy" alt="" srcset="<?php echo $img_medium[0] . ' ' . $img_medium[1] . 'w, ' . $img_small[0] . ' ' . $img_small[1] . 'w'; ?>" sizes="150px" src="<?php echo $img_small[0]; ?>">
 			</a>
 		<?php endif; ?>
 		<h3 class="recent-episodes__title">
-		  <a href="<?php the_permalink(); ?>"><?php get_the_title() ? the_title() : the_ID(); ?></a>
+		  <a href="<?php the_permalink(); ?>" aria-label="Episode title: <?php get_the_title() ? the_title() : the_ID(); ?>"><?php get_the_title() ? the_title() : the_ID(); ?></a>
 		</h3>
 		<p class="recent-episodes__subtitle">
-		  <a href="<?php echo $series->taxonomy . '/' . $series->slug; ?>"><?php echo $series->name; ?></a>
+		  <a href="<?php echo $series->taxonomy . '/' . $series->slug; ?>" aria-label="Series title: <?php echo $series->name; ?>"><?php echo $series->name; ?></a>
 		</p>
 			<?php if ( $show_date ) : ?>
 				<p class="recent-episodes__date">Released <time datetime="<?php echo get_the_date('c'); ?>"><?php echo get_the_date(); ?></time></p>
