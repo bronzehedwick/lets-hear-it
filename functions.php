@@ -686,6 +686,16 @@ function lets_hear_it_taxonomy_custom_fields($tag) {
 	</td>
 </tr>
 
+<tr class="form-field">
+	<th scope="row" valign="top">
+		<label for="discord_url"><?php _e('Discord URL'); ?></label>
+	</th>
+	<td>
+		<input type="text" name="term_meta[discord_url]" id="term_meta[discord_url]" size="25" style="width:60%;" value="<?php echo $term_meta['discord_url'] ? $term_meta['discord_url'] : ''; ?>"><br />
+		<span class="description"><?php _e('The show\'s Discord URL.'); ?></span>
+	</td>
+</tr>
+
 <?php
 }
 
