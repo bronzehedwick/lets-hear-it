@@ -66,8 +66,16 @@ get_header();
 					}
 				}
 				the_archive_description( '<div class="archive-description">', '</div>' );
+				if ( !empty( $series_custom_fields['podcast_hosts'] ) ) {
+					$user = get_user_by( 'id', $series_custom_fields['podcast_hosts'] );
+					echo '<p><strong>Hosted by</strong> ';
+					echo '<a href="/author/' . $user->data->user_nicename . '">';
+					echo $user->data->display_name;
+					echo '</a></p>';
+				}
 				?>
 			</header><!-- .page-header -->
+			<hr>
 
 			<?php
 			/* Start the Loop */

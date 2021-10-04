@@ -658,6 +658,22 @@ function lets_hear_it_taxonomy_custom_fields($tag) {
 
 <tr class="form-field">
 	<th scope="row" valign="top">
+		<label for="podcast_hosts"><?php _e('Hosts'); ?></label>
+	</th>
+	<td>
+		<select id="term_meta[podcast_hosts]" name="term_meta[podcast_hosts]" multiple>
+			<?php foreach ( get_users() as $user ) {
+				$selected = $term_meta['podcast_hosts'] == $user->data->ID ? 'selected' : '';
+				echo '<option ' . $selected . ' value="' . $user->data->ID . '">' . $user->data->display_name . '</option>';
+			} ?>
+		</select>
+		<br>
+		<span class="description"><?php _e('Select one or more hosts. Hold Command, control, or shift, depending on your OS, to select multiple.'); ?></span>
+	</td>
+</tr>
+
+<tr class="form-field">
+	<th scope="row" valign="top">
 		<label for="twitter_url"><?php _e('Twitter URL'); ?></label>
 	</th>
 	<td>
