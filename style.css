@@ -1308,6 +1308,31 @@ textarea {
 
 /* 2}}} */
 
+/* Oxford list {{{2
+--------------------------------------------- */
+
+.oxford-list > * {
+	display: inline;
+}
+
+.oxford-list > *::after {
+	content: ', ';
+}
+
+.oxford-list > *:last-child::before {
+	content: ' and ';
+}
+
+.oxford-list > *:last-child::after {
+	content: '';
+}
+
+.oxford-list > *:first-child:last-child::before {
+	content: '';
+}
+
+/* 2}}} */
+
 /* 1}}} */
 
 /* vim: tabstop=4 shiftwidth=4 noexpandtab nolist

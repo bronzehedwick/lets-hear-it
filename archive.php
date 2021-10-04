@@ -67,11 +67,14 @@ get_header();
 				}
 				the_archive_description( '<div class="archive-description">', '</div>' );
 				if ( !empty( $series_custom_fields['podcast_hosts'] ) ) {
-					$user = get_user_by( 'id', $series_custom_fields['podcast_hosts'] );
-					echo '<p><strong>Hosted by</strong> ';
-					echo '<a href="/author/' . $user->data->user_nicename . '">';
-					echo $user->data->display_name;
-					echo '</a></p>';
+					echo '<p><strong>Hosted by</strong> <span class="oxford-list">';
+					foreach ( $series_custom_fields['podcast_hosts'] as $host ) {
+						$user = get_user_by( 'id', $host );
+						echo '<span><a href="/author/' . $user->data->user_nicename . '">';
+						echo $user->data->display_name;
+						echo '</a></span>';
+					}
+					echo '</span>.</p>';
 				}
 				?>
 			</header><!-- .page-header -->

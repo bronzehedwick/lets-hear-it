@@ -661,9 +661,9 @@ function lets_hear_it_taxonomy_custom_fields($tag) {
 		<label for="podcast_hosts"><?php _e('Hosts'); ?></label>
 	</th>
 	<td>
-		<select id="term_meta[podcast_hosts]" name="term_meta[podcast_hosts]" multiple>
+		<select id="term_meta[podcast_hosts][]" name="term_meta[podcast_hosts][]" multiple>
 			<?php foreach ( get_users() as $user ) {
-				$selected = $term_meta['podcast_hosts'] == $user->data->ID ? 'selected' : '';
+				$selected = in_array( $user->data->ID, $term_meta['podcast_hosts'] ) ? 'selected' : '';
 				echo '<option ' . $selected . ' value="' . $user->data->ID . '">' . $user->data->display_name . '</option>';
 			} ?>
 		</select>
