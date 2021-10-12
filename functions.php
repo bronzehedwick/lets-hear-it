@@ -594,6 +594,17 @@ function lets_hear_it_init() {
 		'index.php?pagename=artists&user_id=$matches[1]',
 		'top'
 	);
+	// Episode "guest" custom post type.
+	register_post_type('lets_hear_it_guest', [
+		'labels' => [
+			'name' => __( 'Guests', 'textdomain' ),
+			'singular_name' => __( 'Guest', 'textdomain' ),
+		],
+		'description' => 'A guest on a podcast.',
+		'public' => TRUE,
+		'has_archive' => TRUE,
+		'rewrite' => ['slug' => 'guests'],
+	]);
 }
 add_action( 'init', 'lets_hear_it_init' );
 
@@ -649,7 +660,7 @@ function lets_hear_it_head() {
 }
 add_action( 'wp_head', 'lets_hear_it_head' );
 
-// A callback function to add a custom field to our "presenters" taxonomy
+// A callback function to add a custom field to our "series" taxonomy
 function lets_hear_it_taxonomy_custom_fields($tag) {
 	// Check for existing taxonomy meta for the term you're editing
 	$t_id = $tag->term_id; // Get the ID of the term you're editing
