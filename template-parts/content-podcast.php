@@ -4,7 +4,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
- * @package Let\'s_Hear_It
+ * @package Lets_Hear_It
  */
 
 ?>
@@ -47,6 +47,21 @@
 				wp_kses_post( get_the_title() )
 			)
 		);
+
+		$guests = get_field( 'select_guests' );
+		if ( $guests ) {
+			$pluralized_guest = count($guests) > 1 ? 'Guests' : 'Guest';
+			echo '<h2>Episode ' . $pluralized_guest . '</h2>';
+			foreach ( $guests as $guest_id ) {
+				$guest = get_post( $guest_id );
+				$guest_image = get_field( 'image', $guest_id );
+				echo '<div class="teaser">';
+				echo '<h3 class="teaser__title"><a href="' . get_permalink( $guest_id ) . '">' . $guest->post_title . '</a></h3>';
+				echo '<img class="teaser__image" src="' . $guest_image['sizes']['medium'] . '" alt="' . $guest_image['alt'] . '" width="' . $guest_image['sizes']['medium-width'] . '" height="' . $guest_image['sizes']['medium-height'] . '">';
+				echo '<div class="teaser__content">' . $guest->post_content . '</div>';
+				echo '</div>';
+			}
+		}
 
 		wp_link_pages(
 			array(

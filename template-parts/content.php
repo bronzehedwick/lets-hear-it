@@ -33,6 +33,10 @@
 
 	<div class="entry-content">
 		<?php
+		$image = get_field( 'image' );
+		if ( $image ) {
+			echo '<img src="' . $image['sizes']['large'] . '" alt="' . $image['alt'] . '" width="' . $image['sizes']['large-width'] . '" height="' . $image['sizes']['large-height'] . '">';
+		}
 		the_content(
 			sprintf(
 				wp_kses(
