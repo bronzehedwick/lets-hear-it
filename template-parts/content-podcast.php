@@ -61,7 +61,6 @@
 		<?php lets_hear_it_entry_footer(); ?>
 	</footer><!-- .entry-footer -->
 </article><!-- #post-<?php the_ID(); ?> -->
-
-<!--
-vim: tabstop=4 shiftwidth=4 noexpandtab nolist
--->
+<?php
+// vim: tabstop=4 shiftwidth=4 noexpandtab nolist
+?>
